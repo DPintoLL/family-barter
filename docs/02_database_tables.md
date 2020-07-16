@@ -2,14 +2,14 @@
 
 ## Families Table
 
-Name: families
+Name: families <br />
 Fields:
 
 - id
 
 ## Users Table
 
-Name: users
+Name: users <br />
 Fields:
 
 - family_id
@@ -21,7 +21,7 @@ Fields:
 
 ## User Types Table
 
-Name: user_types
+Name: user_types <br />
 Fields:
 
 - id
@@ -29,7 +29,7 @@ Fields:
 
 ## Registration Codes Table
 
-Name: registration_codes
+Name: registration_codes <br />
 Fields:
 
 - id
@@ -38,7 +38,7 @@ Fields:
 
 ## Quests Table
 
-Name: quests
+Name: quests <br />
 Fields:
 
 - id
@@ -53,7 +53,7 @@ Fields:
 
 ## Quest Steps Table
 
-Name: quest_steps
+Name: quest_steps <br />
 Fields:
 
 - id
@@ -63,7 +63,7 @@ Fields:
 
 ## Quest Reviews Table
 
-Name: quest_reviews
+Name: quest_reviews <br />
 Fields: (use combined PK of user_id and quest_id)
 
 - user_id
@@ -72,7 +72,7 @@ Fields: (use combined PK of user_id and quest_id)
 
 ## Rewards Table
 
-Name: rewards
+Name: rewards <br />
 Fields:
 
 - id
@@ -87,7 +87,7 @@ Fields:
 
 ## Stores Table
 
-Name: stores
+Name: stores <br />
 Fields:
 
 - id
@@ -96,7 +96,7 @@ Fields:
 
 ## Store Rewards Table
 
-Name: store_rewards
+Name: store_rewards <br />
 Fields: (use combined PK of store_id and reward_id)
 
 - store_id
@@ -105,7 +105,7 @@ Fields: (use combined PK of store_id and reward_id)
 
 ## Store Discounts Table
 
-Name: store_discounts
+Name: store_discounts <br />
 Fields:
 
 - id
@@ -117,7 +117,7 @@ Fields:
 
 ## User Rewards
 
-Name: user_rewards
+Name: user_rewards <br />
 Fields: (use combined PK of user_id and reward_id)
 
 - user_id
