@@ -82,6 +82,8 @@ Fields:
 - cost
 - icon
 - icon_color
+- created_by
+- restricted
 
 ## Stores Table
 
