@@ -23,6 +23,8 @@
   },
   "scripts": {
     "start": "concurrently \"react-scripts start\" \"./node_modules/.bin/nodemon -L server\"",
+    "client": "react-scripts start",
+    "server": "./node_modules/.bin/nodemon -L server",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "coverage": "react-scripts test --coverage --watchAll=false",

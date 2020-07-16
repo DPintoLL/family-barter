@@ -14,6 +14,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
+This command begins both the client and the server concurrently. The client and server can be run independently by running `npm run client` and `npm run server`. (Note: the server must be running in order for the client to function correctly.)
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br />
