@@ -1,6 +1,8 @@
-// ./routes/quests.js
+// ./routes/quests/index.js
 
 const express = require("express");
+const reviews = require("./reviews");
+const tasks = require("./tasks");
 const router = express.Router({ mergeParams: true });
 
 // ## /{family_id}/quests path
@@ -63,31 +65,10 @@ router.get("/:quest_id/edit", (req, res) => {
   res.send(`GET /:family_id/quests/:quest_id/edit route hit`);
 });
 
-// ## /{family_id}/quests/{quest_id}/reviews
-// ### GET Method
-// Return reviews for a completed quest.
-router.get("/:quest_id/reviews", (req, res) => {
-  res.send(`GET /:family_id/quests/:quest_id/reviews route hit`);
-});
+// ## /{family_id}/quests/{quest_id}/reviews routes
+router.use("/:quest_id/reviews", reviews);
 
-// ### POST Method
-// Submit quest review to server.
-router.post("/:quest_id/reviews", (req, res) => {
-  res.send(`POST /:family_id/quests/:quest_id/reviews route hit`);
-});
-
-// ## /{family_id}/quests/{quest_id}/reviews/{review_id}
-// ### GET Method
-// Return details of quest review.
-router.get("/:quest_id/reviews/:review_id", (req, res) => {
-  res.send(`GET /:family_id/quests/:quest_id/reviews/:review_id route hit`);
-});
-
-// ## /{family_id}/quests/{quest_id}/steps/{step_id}/complete
-// ### POST Method
-// Mark a quest step as completed.
-router.get("/:quest_id/steps/:step_id/complete", (req, res) => {
-  res.send(`GET /family_id/quests/:quest_id/steps/:step_id/complete route hit`);
-});
+// ## /{family_id}/quests/{quest_id}/tasks routes
+router.use("/:quest_id/tasks", tasks);
 
 module.exports = router;

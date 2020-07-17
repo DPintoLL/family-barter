@@ -11,20 +11,20 @@ const router = express.Router({ mergeParams: true });
 // ## /{family_id}
 // ### GET Method
 // Return family index page.
-router.get("/:family_id", (req, res) => {
+router.get("/", (req, res) => {
   res.send(`GET /:family_id route hit`);
 });
 
 // ## /{family_id}/quests routes
-router.use("/:family_id/quests", quests);
+router.use("/quests", quests);
 
 // ## /{family_id}/prizes routes
-router.use("/:family_id/prizes", prizes);
+router.use("/prizes", prizes);
 
 // ## /{family_id}/stores routes
-router.use("/:family_id/stores", stores);
+router.use("/stores", stores);
 
 // ## /{family_id}/users routes
-router.use("/:family_id/users", users);
+router.use("/users", users);
 
 module.exports = router;
