@@ -1,0 +1,59 @@
+{
+  "name": "family-barter",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "node-sass": "^4.14.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
+    "sass": "^1.26.10",
+    "typescript": "^3.9.6"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/react-hooks": "^3.3.0",
+    "@testing-library/user-event": "^7.2.1",
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4",
+    "react-test-renderer": "^16.13.1"
+  },
+  "scripts": {
+    "start": "concurrently \"react-scripts start\" \"./node_modules/.bin/nodemon -L server\"",
+    "client": "react-scripts start",
+    "server": "./node_modules/.bin/nodemon -L server",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "coverage": "react-scripts test --coverage --watchAll=false",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "jest": {
+    "watchPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/.git/"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js"
+    ]
+  },
+  "proxy": "http://localhost:8000",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
