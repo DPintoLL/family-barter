@@ -63,13 +63,14 @@ Fields:
 - updated_at TIMESTAMP
 - updated_by INTEGER REFERENCES users(id)
 
-## Quest Steps Table
+## Quest tasks Table
 
-Name: quest_steps <br />
+Name: quest_tasks <br />
 Fields:
 
 - id SERIAL PRIMARY KEY
 - quest_id INTEGER REFERENCES quest(id) NOT NULL
+- name VARCHAR
 - description VARCHAR(255)
 - is_completed BOOLEAN
 

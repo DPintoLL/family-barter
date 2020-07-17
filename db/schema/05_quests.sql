@@ -11,7 +11,7 @@ CREATE TABLE quests (
   parent_id INTEGER REFERENCES quest(id),
   index_number INTEGER DEFAULT 1,
   assigned_to INTEGER REFERENCES users(id),
-  is_completed BOOLEAN NOT NULL DEFAULT 0,
+  is_completed BOOLEAN NOT NULL DEFAULT false,
   created_at TIMESTAMP NOT NULL DEFAULT NOW(),
   created_by INTEGER REFERENCES users(id) NOT NULL,
   updated_at TIMESTAMP,
