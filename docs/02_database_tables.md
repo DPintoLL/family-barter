@@ -9,6 +9,14 @@ Fields:
 - surname VARCHAR
 - created_at TIMESTAMP NOT NULL DEFAULT NOW()
 
+## User Types Table
+
+Name: user_types <br />
+Fields:
+
+- id SERIAL PRIMARY KEY
+- name VARCHAR NOT NULL
+
 ## Users Table
 
 Name: users <br />
@@ -24,14 +32,6 @@ Fields:
 - type_id INTEGER REFERENCES user_types(id) NOT NULL
 - invited_by INTEGER REFERENCES users(id)
 - created_at TIMESTAMP NOT NULL DEFAULT NOW()
-
-## User Types Table
-
-Name: user_types <br />
-Fields:
-
-- id SERIAL PRIMARY KEY
-- name VARCHAR NOT NULL
 
 ## Registration Codes Table
 
