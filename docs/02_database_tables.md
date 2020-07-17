@@ -6,9 +6,8 @@ Name: families <br />
 Fields:
 
 - id SERIAL PRIMARY KEY
-- family_name VARCHAR
+- surname VARCHAR
 - created_at TIMESTAMP NOT NULL DEFAULT NOW()
-- created_by INTEGER REFERENCES users(id) NOT NULL
 
 ## Users Table
 
@@ -16,13 +15,13 @@ Name: users <br />
 Fields:
 
 - id SERIAL PRIMARY KEY
-- family_id INTEGER REFERENCES families(id) NOT NULL
-- type_id INTEGER REFERENCES user_types(id) NOT NULL
+- family_id INTEGER REFERENCES families(id)
 - first_name VARCHAR NOT NULL
 - last_name VARCHAR NOT NULL
 - email VARCHAR(255) NOT NULL UNIQUE
 - password_hash VARCHAR
 - balance INTEGER NOT NULL DEFAULT 0
+- type_id INTEGER REFERENCES user_types(id) NOT NULL
 - invited_by INTEGER REFERENCES users(id)
 - created_at TIMESTAMP NOT NULL DEFAULT NOW()
 
@@ -32,7 +31,7 @@ Name: user_types <br />
 Fields:
 
 - id SERIAL PRIMARY KEY
-- name VARCHAR
+- name VARCHAR NOT NULL
 
 ## Registration Codes Table
 
@@ -41,7 +40,8 @@ Fields:
 
 - id SERIAL PRIMARY KEY
 - family_id INTEGER REFERENCES families(id) NOT NULL
-- user_type_id INTEGER REFERENCES user_types(id) NOT NULL
+- type_id INTEGER REFERENCES user_types(id) NOT NULL
+- code VARCHAR NOT NULL UNIQUE
 - created_at TIMESTAMP NOT NULL DEFAULT NOW()
 
 ## Quests Table
