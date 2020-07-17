@@ -1,7 +1,13 @@
-const express = require("express");
+const express = require('express')
+const mountRoutes = require('./routes')
 
-const app = express();
+const app = express()
+mountRoutes(app)
 
-app.listen(8000, () => {
-  console.log(`Server listening on port ${8000}!`);
-});
+const DEFAULT_PORT = 8000
+
+const port = process.env.PORT || DEFAULT_PORT
+
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}!`)
+})
