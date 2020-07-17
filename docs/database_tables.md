@@ -53,7 +53,7 @@ Fields:
 - family_id INTEGER REFERENCES families(id) NOT NULL
 - title VARCHAR
 - description VARCHAR(255)
-- gold_amount INTEGER
+- reward INTEGER NOT NULL
 - parent_id INTEGER REFERENCES quest(id)
 - index_number INTEGER
 - assigned_to INTEGER REFERENCES users(id)
@@ -82,6 +82,7 @@ Fields:
 - user_id INTEGER REFERENCES users(id) NOT NULL
 - quest_id INTEGER REFERENCES quest(id) NOT NULL
 - rating INTEGER NOT NULL
+- comment TEXT
 - PRIMARY KEY (user_id, quest_id)
   (use composite PK of user_id and quest_id)
 
@@ -109,8 +110,8 @@ Name: stores <br />
 Fields:
 
 - id SERIAL PRIMARY KEY
-- family_id INTEGER REFERENCES families(id)
 - user_id INTEGER REFERENCES users(id)
+- family_id INTEGER REFERENCES families(id)
 
 ## Store Prizes Table
 
@@ -125,14 +126,14 @@ Fields:
 
 ## Store Discounts Table
 
-Name: store_discounts <br />
+Name: discounts <br />
 Fields:
 
 - id SERIAL PRIMARY KEY
-- reward_id INTEGER REFERENCES reward(id)
-- discount REAL NOT NULL
-- start_TIMESTAMP TIMESTAMP NOT NULL DEFAULT NOW()
-- end_TIMESTAMP TIMESTAMP NOT NULL
+- prize_id INTEGER REFERENCES prizes(id)
+- percentage REAL NOT NULL
+- start_time TIMESTAMP NOT NULL DEFAULT NOW()
+- end_time TIMESTAMP NOT NULL
 - created_at TIMESTAMP NOT NULL DEFAULT NOW()
 - created_by INTEGER REFERENCES users(id)
 - updated_at TIMESTAMP
