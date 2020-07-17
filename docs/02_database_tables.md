@@ -85,9 +85,9 @@ Fields:
 - PRIMARY KEY (user_id, quest_id)
   (use composite PK of user_id and quest_id)
 
-## Rewards Table
+## Prizes Table
 
-Name: rewards <br />
+Name: prizes <br />
 Fields:
 
 - id SERIAL PRIMARY KEY
@@ -95,7 +95,7 @@ Fields:
 - name VARCHAR
 - description VARCHAR(255)
 - cost INTEGER NOT NULL
-- icon_image VARCHAR
+- icon_url VARCHAR
 - icon_color VARCHAR
 - is_shared BOOLEAN default true
 - created_at TIMESTAMP NOT NULL DEFAULT NOW()
@@ -112,16 +112,16 @@ Fields:
 - family_id INTEGER REFERENCES families(id)
 - user_id INTEGER REFERENCES users(id)
 
-## Store Rewards Table
+## Store Prizes Table
 
-Name: store_rewards <br />
+Name: store_prizes <br />
 Fields:
 
 - store_id INTEGER REFERENCES store(id)
-- reward_id INTEGER REFERENCES reward(id)
+- prize_id INTEGER REFERENCES reward(id)
 - quantity INTEGER
-- PRIMARY KEY (store_id, reward_id)
-  (use composite PK of store_id and reward_id)
+- PRIMARY KEY (store_id, prize_id)
+  (use composite PK of store_id and prize_id)
 
 ## Store Discounts Table
 
@@ -129,7 +129,6 @@ Name: store_discounts <br />
 Fields:
 
 - id SERIAL PRIMARY KEY
-- store_id INTEGER REFERENCES stores(id)
 - reward_id INTEGER REFERENCES reward(id)
 - discount REAL NOT NULL
 - start_TIMESTAMP TIMESTAMP NOT NULL DEFAULT NOW()
@@ -141,11 +140,11 @@ Fields:
 
 ## User Rewards
 
-Name: user_rewards <br />
+Name: user_prizes <br />
 Fields:
 
 - user_id INTEGER REFERENCES users(id)
-- reward_id INTEGER REFERENCES reward(id)
+- prize_id INTEGER REFERENCES prizes(id)
 - quantity INTEGER
 - PRIMARY KEY (user_id, reward_id)
-  (use composite PK of user_id and reward_id)
+  (use composite PK of user_id and prize_id)
