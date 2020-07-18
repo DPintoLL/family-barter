@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import "./quest.styles.scss";
+import "./styles.scss";
 
 const COMMON = "COMMON";
 const UNCOMMON = "UNCOMMON";
