@@ -1,4 +1,5 @@
-INSERT into users (
+-- users seed file
+INSERT INTO users (
   family_id, 
   first_name, 
   last_name,
@@ -7,10 +8,11 @@ INSERT into users (
   type_id,
   invited_by
 ) VALUES (
-  -- family of 5, the King family
-  -- Devin, Ayana the parent accounts
-  -- Devin the admin account
-  -- Brent/Lonny/Griffin child accounts
+  /* family of 5, the King family
+   * Devin, Ayana the parent accounts
+   * Devin the admin account
+   * Brent/Lonny/Griffin child accounts
+   */
   1,
   "Devin",
   "King",
