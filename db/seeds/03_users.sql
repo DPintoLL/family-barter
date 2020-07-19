@@ -13,6 +13,8 @@ INSERT INTO users (
    * Devin the admin account
    * Brent/Lonny/Griffin child accounts
    */
+
+   /* id: 1 */
   1,
   "Devin",
   "King",
@@ -22,6 +24,7 @@ INSERT INTO users (
   null
 ),
 (
+  /* id: 2 */
   1,
   "Ayana",
   "King",
@@ -31,6 +34,7 @@ INSERT INTO users (
   1
 ),
 (
+  /* id: 3 */
   1,
   "Brent",
   "King",
@@ -40,6 +44,7 @@ INSERT INTO users (
   1
 ),
 (
+  /* id: 4 */
   "Lonny",
   "King",
   "lonny@king.com",
@@ -48,6 +53,7 @@ INSERT INTO users (
   1
 ),
 (
+  /* id: 5 */
   "Griffin",
   "King",
   "griffin@king.com",
