@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS quest_tasks CASCADE;
 
 CREATE TABLE quest_tasks (
   id            SERIAL PRIMARY KEY,
-  quest_id      INTEGER REFERENCES quests(id) NOT NULL,
+  stage_id      INTEGER REFERENCES quest_stages(id) NOT NULL,
   name          VARCHAR(255) NOT NULL,
   description   VARCHAR(255),
   is_completed  BOOLEAN NOT NULL DEFAULT false
