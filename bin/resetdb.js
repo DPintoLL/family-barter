@@ -1,12 +1,20 @@
-// load .env data into process.env
-require("dotenv").config();
+// bin/resetdb.js
 
-// Dependencies
+const path = require("path");
+
+// set path to .env file
+const ENV = process.env.NODE_ENV || "development";
+const PATH = path.resolve(__dirname, "../.env." + ENV);
+
+// load .env data into process.env
+require("dotenv").config({ path: PATH });
+
+// dependencies
 const fs = require("fs");
 const chalk = require("chalk");
 const { Client } = require("pg");
 
-// Setup database connection
+// setup database connection
 const client = new Client({
   host: process.env.PGHOST,
   port: process.env.PGPORT,
@@ -15,7 +23,7 @@ const client = new Client({
   password: process.env.PGPASSWORD,
 });
 
-// Load files from /db directory
+// load files from /db directory
 const loadFiles = function (folder) {
   const fileType = folder.charAt(0).toUpperCase() + folder.slice(1);
   console.log(chalk.cyan(`-> Loading ${fileType} Files ...`));
@@ -25,7 +33,7 @@ const loadFiles = function (folder) {
   });
 };
 
-// Run files from /db directory
+// run files from /db directory
 const runFiles = function (files, fileType) {
   if (files.length === 0) {
     console.log(`\t-> All ${fileType} files run successfully`);
@@ -37,19 +45,19 @@ const runFiles = function (files, fileType) {
   }
 };
 
-// Loads the schema files from db/schema
+// loads the schema files from db/schema
 const runSchemaFiles = function () {
   const schemaFiles = loadFiles("schema");
   return runFiles(schemaFiles, "schema");
 };
 
-// Loads the seed files from db/seeds
+// loads the seed files from db/seeds
 const runSeedFiles = function () {
   const schemaFiles = loadFiles("seeds");
   return runFiles(schemaFiles, "seed");
 };
 
-// Reset database
+// reset database
 console.log(chalk.cyan(`-> Connecting to database ...`));
 client
   .connect()
