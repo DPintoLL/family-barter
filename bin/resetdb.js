@@ -36,12 +36,11 @@ const loadFiles = function (folder) {
 // run files from /db directory
 const runFiles = function (files, fileType) {
   if (files.length === 0) {
-    console.log(`\t-> All ${fileType} files run successfully`);
     return null;
   } else {
     const [fn, sql] = files.shift();
     console.log(`\t-> Running ${chalk.green(fn)}`);
-    return client.query(sql).then(() => runFiles(files));
+    return client.query(sql).then(() => runFiles(files, fileType));
   }
 };
 
@@ -63,11 +62,13 @@ client
   .connect()
   .then(() => {
     console.log(chalk.green("Connected to database!"));
-    runSchemaFiles().then(() => runSeedFiles());
-    client.end();
-    console.log("Database connection closed.");
   })
+  .then(() => runSchemaFiles())
+  .then(() => runSeedFiles())
+  .then(() => client.end())
   .catch((err) => {
     console.error(chalk.red(`Failed due to error:\n${err}`));
     client.end();
   });
+
+console.log("Database connection closed.");
