@@ -8,11 +8,11 @@ const { Client } = require("pg");
 
 // Setup database connection
 const client = new Client({
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  database: process.env.DB_NAME,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
+  host: process.env.PGHOST,
+  port: process.env.PGPORT,
+  database: process.env.PGDATABASE,
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
 });
 
 // Load files from /db directory
@@ -50,7 +50,7 @@ const runSeedFiles = function () {
 };
 
 // Reset database
-console.log(`-> Connecting to database ...`);
+console.log(chalk.cyan(`-> Connecting to database ...`));
 client
   .connect()
   .then(() => {
@@ -60,6 +60,6 @@ client
     console.log("Database connection closed.");
   })
   .catch((err) => {
-    console.error(chalk.red(`Failed due to error: ${err}`));
+    console.error(chalk.red(`Failed due to error:\n${err}`));
     client.end();
   });
