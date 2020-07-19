@@ -13,7 +13,7 @@ INSERT INTO discounts (
   10,
   '2020-07-31 23:59:59',
   1
-)''
+);
 
 /* an updated discount field, 
  * so updated_at and updated_by fields used
