@@ -4,7 +4,7 @@ INSERT INTO quests (
   title,
   description,
   reward,
-  parent_id
+  parent_id,
   index_number,
   assigned_to,
   is_completed,
@@ -102,7 +102,7 @@ INSERT INTO quests (
   title,
   description,
   reward,
-  parent_id
+  parent_id,
   index_number,
   assigned_to,
   is_completed,
@@ -136,7 +136,7 @@ INSERT INTO quests (
   title,
   description,
   reward,
-  parent_id
+  parent_id,
   index_number,
   assigned_to,
   is_completed,
