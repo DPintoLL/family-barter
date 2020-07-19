@@ -1,8 +1,8 @@
 -- Drop and recreate user_types table
 
-DROP TABLE IF EXISTS user_types;
+DROP TABLE IF EXISTS user_types CASCADE;
 
 CREATE TABLE user_types (
-  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  name VARCHAR(255)
+  id              SERIAL PRIMARY KEY,
+  name            VARCHAR(255)
 );
