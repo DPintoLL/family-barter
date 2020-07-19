@@ -1,9 +1,9 @@
 -- Drop and recreate families table
 
-DROP TABLE IF EXISTS families;
+DROP TABLE IF EXISTS families CASCADE;
 
 CREATE TABLE families (
-  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  surname VARCHAR(255),
-  created_at TIMESTAMP NOT NULL DEFAULT NOW()
+  id            SERIAL PRIMARY KEY,
+  surname       VARCHAR(255),
+  created_at    TIMESTAMP NOT NULL DEFAULT NOW()
 );

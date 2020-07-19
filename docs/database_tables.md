@@ -93,7 +93,7 @@ Fields:
 
 - id SERIAL PRIMARY KEY
 - family_id INTEGER REFERENCES families(id) NOT NULL
-- name VARCHAR
+- name VARCHAR NOT NULL,
 - description VARCHAR(255)
 - cost INTEGER NOT NULL
 - icon_url VARCHAR
