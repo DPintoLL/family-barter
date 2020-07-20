@@ -1,5 +1,5 @@
 import { Action, State } from "../interfaces";
-import { getQuestById } from "../selectors";
+import { getQuestById, getStageById, getTaskById } from "../selectors";
 
 export const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
 export const ADD_NEW_QUEST = "SET_QUEST";
@@ -34,6 +34,26 @@ export default function reducer(state: State, action: Action) {
 
   if (action.type === COMPLETE_TASK) {
     const { id } = action;
+    const task = getTaskById(state, id!);
+    const stage = getStageById(state, task!.stage_id);
+    const quest = getQuestById(state, stage!.quest_id);
+
+    const tasks = [
+      ...stage!.tasks.filter((t) => t.id !== task!.id),
+      { ...task, is_completed: true },
+    ];
+
+    const stages = [
+      ...quest!.stages.filter((s) => s.id !== stage!.id),
+      { ...stage, tasks },
+    ];
+
+    const quests = [
+      ...state.quests.filter((q) => q.id !== quest!.id),
+      { ...quest, stages },
+    ];
+
+    return { ...state, quests };
   }
 
   throw new Error(

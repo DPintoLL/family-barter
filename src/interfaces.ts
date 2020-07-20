@@ -4,6 +4,7 @@ export interface Task {
   name: string;
   description: string | null;
   is_completed: boolean;
+  quest_id?: number;
 }
 
 export interface Stage {

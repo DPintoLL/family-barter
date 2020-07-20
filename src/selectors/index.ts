@@ -1,4 +1,5 @@
 import { getQuestById } from "./quests";
+import { getStageById } from "./stages";
 import { getTaskById } from "./tasks";
 
-export { getQuestById, getTaskById };
+export { getQuestById, getStageById, getTaskById };
