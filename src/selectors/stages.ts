@@ -7,7 +7,7 @@ import { Quest, Stage, State } from "../interfaces";
  * @param {Object} state
  * @param {Number} id
  */
-export function getStageById(state: State, id: Number): Stage | null {
+export function getStageFromStateById(state: State, id: Number): Stage | null {
   return (
     state.quests
       .reduce((stages: Array<Stage>, quest: Quest) => {
@@ -15,4 +15,13 @@ export function getStageById(state: State, id: Number): Stage | null {
       }, [])
       .find((stage: Stage) => stage.id === id) || null
   );
+}
+
+/**
+ * Returns the stage object for a specified id.
+ * @param {Object} state
+ * @param {Number} id
+ */
+export function getStageFromQuestById(quest: Quest, id: Number): Stage | null {
+  return quest.stages.find((stage: Stage) => stage.id === id) || null;
 }

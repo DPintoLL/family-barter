@@ -40,7 +40,7 @@ export interface Action {
   id?: number;
   assigned_to?: number;
   type: string;
-  quest?: object;
+  quest?: Quest;
   quests?: Quest[];
   stage?: Stage;
   task?: Task;

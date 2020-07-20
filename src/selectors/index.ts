@@ -1,5 +1,16 @@
 import { getQuestById } from "./quests";
-import { getStageById } from "./stages";
-import { getTaskById } from "./tasks";
+import { getStageFromStateById, getStageFromQuestById } from "./stages";
+import {
+  getTaskFromStateById,
+  getTaskFromQuestById,
+  getTaskFromStageById,
+} from "./tasks";
 
-export { getQuestById, getStageById, getTaskById };
+export {
+  getQuestById,
+  getStageFromStateById,
+  getStageFromQuestById,
+  getTaskFromStateById,
+  getTaskFromQuestById,
+  getTaskFromStageById,
+};

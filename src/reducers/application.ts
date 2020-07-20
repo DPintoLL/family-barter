@@ -1,5 +1,11 @@
 import { Action, State } from "../interfaces";
-import { getQuestById, getStageById, getTaskById } from "../selectors";
+import {
+  getQuestById,
+  getStageFromStateById,
+  getStageFromQuestById,
+  getTaskFromStateById,
+  getTaskFromStageById,
+} from "../selectors";
 
 export const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
 export const SET_QUEST = "SET_QUEST";
@@ -15,18 +21,23 @@ export default function reducer(state: State, action: Action) {
   }
 
   if (action.type === SET_QUEST) {
-    const { quest } = action;
-    return {
-      ...state,
-      quests: [...state.quests, quest],
-    } as State;
+    const { id, quest } = action;
+
+    const quests = [
+      ...state.quests.filter((q) => q.id !== id),
+      { ...getQuestById(state, id!), ...quest! },
+    ];
+    return { ...state, quests } as State;
   }
 
   if (action.type === SET_STAGE) {
-    const { stage } = action;
+    const { id, stage } = action;
     const quest = getQuestById(state, stage!.quest_id);
 
-    const stages = [...quest!.stages.filter((s) => s.id !== stage!.id), stage];
+    const stages = [
+      ...quest!.stages.filter((s) => s.id !== id),
+      { ...getStageFromQuestById(quest!, id!), ...stage! },
+    ];
 
     const quests = [
       ...state.quests.filter((q) => q.id !== quest!.id),
@@ -37,11 +48,14 @@ export default function reducer(state: State, action: Action) {
   }
 
   if (action.type === SET_TASK) {
-    const { task } = action;
-    const stage = getStageById(state, task!.stage_id);
+    const { id, task } = action;
+    const stage = getStageFromStateById(state, task!.stage_id);
     const quest = getQuestById(state, stage!.quest_id);
 
-    const tasks = [...stage!.tasks.filter((t) => t.id !== task!.id), task];
+    const tasks = [
+      ...stage!.tasks.filter((t) => t.id !== id!),
+      { ...getTaskFromStageById(stage!, id!), ...task! },
+    ];
 
     const stages = [
       ...quest!.stages.filter((s) => s.id !== stage!.id),
@@ -70,8 +84,8 @@ export default function reducer(state: State, action: Action) {
 
   if (action.type === COMPLETE_TASK) {
     const { id } = action;
-    const task = getTaskById(state, id!);
-    const stage = getStageById(state, task!.stage_id);
+    const task = getTaskFromStateById(state, id!);
+    const stage = getStageFromStateById(state, task!.stage_id);
     const quest = getQuestById(state, stage!.quest_id);
 
     const tasks = [

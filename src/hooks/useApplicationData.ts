@@ -1,6 +1,8 @@
 import { useReducer, useEffect } from "react";
 import axios from "axios";
 
+import { Quest } from "../interfaces";
+
 import reducer, {
   SET_APPLICATION_DATA,
   SET_QUEST,
@@ -24,6 +26,10 @@ export function useApplicationData() {
   //     }
   //   );
   // }, []);
+
+  function addQuest(quest: Quest) {
+    dispatch({ type: SET_QUEST, quest });
+  }
 
   function acceptQuest(questId: number, userId: number) {
     dispatch({ type: ASSIGN_QUEST, id: questId, assigned_to: userId });
