@@ -19,6 +19,7 @@ export function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, {
     quests: [],
     family_members: [],
+    stores: []
   });
 
   // useEffect(() => {
