@@ -22,8 +22,7 @@ class FamiliesTable {
 
   /**
    * Retrieve a family by its id.
-   * @param {String} visitorId
-   * @param {Number} itemId
+   * @param {String} familyId
    */
   get(familyId) {
     const queryString = `
