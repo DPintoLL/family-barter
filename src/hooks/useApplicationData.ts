@@ -8,6 +8,9 @@ import reducer, {
   SET_QUEST,
   SET_STAGE,
   SET_TASK,
+  ADD_QUEST,
+  ADD_STAGE,
+  ADD_TASK,
   ASSIGN_QUEST,
   COMPLETE_TASK,
 } from "reducers/application";
@@ -27,13 +30,31 @@ export function useApplicationData() {
   //   );
   // }, []);
 
+  /**
+   * Add a new quest.
+   * @param {Object} quest
+   */
   function addQuest(quest: Quest) {
-    dispatch({ type: SET_QUEST, quest });
+    dispatch({ type: ADD_QUEST, quest });
   }
 
+  /**
+   * Edit an existing quest.
+   * @param {Number} id
+   * @param {Object} quest
+   */
+  function editQuest(id: number, quest: Quest) {
+    dispatch({ type: SET_QUEST, id, quest });
+  }
+
+  /**
+   * Assign a quest to a user.
+   * @param {Number} questId
+   * @param {Number} userId
+   */
   function acceptQuest(questId: number, userId: number) {
     dispatch({ type: ASSIGN_QUEST, id: questId, assigned_to: userId });
   }
 
-  return { state, acceptQuest };
+  return { state, addQuest, editQuest, acceptQuest };
 }

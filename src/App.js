@@ -1,7 +1,8 @@
 import React from "react";
 
-function App() {
+import { useApplicationData } from "./hooks/useApplicationData";
+
+export default function App() {
+  const { state, addQuest, editQuest, acceptQuest } = useApplicationData();
   return <div className="App"></div>;
 }
-
-export default App;
