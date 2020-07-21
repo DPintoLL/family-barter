@@ -3,6 +3,7 @@
 const express = require("express");
 const prizes = require("./prizes");
 const router = express.Router({ mergeParams: true });
+const db = require('../../../db')
 
 // ## /{family_id}/stores
 // ### GET Method
@@ -15,7 +16,15 @@ router.get("/", (req, res) => {
 // ### GET Method
 // Get details of store (including list of available prizes and discounts).
 router.get("/:store_id", (req, res) => {
-  res.send(`GET /:family_id/stores/:store_id route hit`);
+  const queryString = `
+    SELECT name, description, cost, quantity FROM prizes
+    INNER JOIN store_prizes ON prizes.id=store_prizes.prize_id
+    INNER JOIN stores ON store_prizes.store_id = stores.id
+    WHERE stores.id = $1
+  ` 
+  const queryParams = [req.params.store_id]
+  db.query(queryString, queryParams)
+  .then(response => res.send(response))
 });
 
 // ## /{family_id}/stores/{store_id}/prizes routes
