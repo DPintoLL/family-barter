@@ -4,6 +4,11 @@ const login = require("./login");
 const register = require("./register");
 const family = require("./family");
 
+/**
+ * Initialize all routers.
+ * @param {Object} app - Express app
+ * @param {Object} db - Database connection
+ */
 module.exports = (app, db) => {
   app.use("/login", login(db));
   app.use("/register", register(db));
