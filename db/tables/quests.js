@@ -14,7 +14,29 @@ class QuestsTable {
    */
   all(familyId) {
     const queryString = `
-      SELECT *
+      SELECT quests.title, quests.description, quests.base_reward, quests.assigned_to,
+        ARRAY(
+          SELECT json_build_object(
+            'index', quest_stages.index_num,
+            'title', quest_stages.title,
+            'description', quest_stages.description,
+            'tasks', ARRAY(
+              SELECT json_build_object(
+                'index', quest_tasks.index_num,
+                'name', quest_tasks.name,
+                'description', quest_tasks.description,
+                'is_completed', quest_tasks.is_completed
+              )
+              FROM quest_tasks
+              WHERE stage_id = quest_stages.id
+              ORDER BY quest_tasks.index_num
+            ),
+            'is_completed', quest_stages.is_completed
+          )
+          FROM quest_stages
+          WHERE quest_id = quests.id
+          ORDER BY quest_stages.index_num
+        ) AS stages
       FROM quests
       WHERE family_id = $1;
     `;
