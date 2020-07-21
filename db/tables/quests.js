@@ -16,7 +16,7 @@ class QuestsTable {
     const queryString = `
       SELECT *
       FROM quests
-      WHERE id = $1;
+      WHERE family_id = $1;
     `;
     return this.db.query(queryString, [familyId]);
   }
@@ -38,15 +38,8 @@ class QuestsTable {
    * Add a new quest.
    * @param {Object} quest
    */
-  add(quest) {
-    const {
-      familyId,
-      title,
-      description,
-      baseReward,
-      assignedTo,
-      createdBy,
-    } = quest;
+  add(familyId, quest) {
+    const { title, description, baseReward, assignedTo, createdBy } = quest;
 
     const queryString = `
       INSERT INTO quests (family_id, title, description, base_reward, assigned_to, created_by)
@@ -68,16 +61,15 @@ class QuestsTable {
    * Update an existing quest.
    * @param {Object} quest
    */
-  update(quest) {
+  update(questId, data) {
     const {
-      id,
       familyId,
       title,
       description,
       baseReward,
       assignedTo,
       updatedBy,
-    } = quest;
+    } = data;
 
     const queryString = `
       UPDATE quests
@@ -92,7 +84,7 @@ class QuestsTable {
     `;
 
     return this.db.query(queryString, [
-      id,
+      questId,
       familyId,
       title,
       description,
@@ -113,6 +105,21 @@ class QuestsTable {
     `;
 
     return this.db.query(queryString, [questId]);
+  }
+
+  /**
+   * Assign a quest to a user.
+   * @param {Number} questId
+   * @param {Number} userId
+   */
+  assign(questId, userId) {
+    const queryString = `
+      UPDATE quests
+      SET assigned_to = $2,
+      WHERE id = $1;
+    `;
+
+    return this.db.query(queryString, [questId, userId]);
   }
 }
 
