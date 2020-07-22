@@ -8,11 +8,12 @@ type DifficultyTypes = "common" | "uncommon" | "rare" | "legendary" | "epic";
 
 interface QuestProps {
   title: string;
+  description: string;
   difficulty: DifficultyTypes;
 }
 
 export default function Quest(props: QuestProps) {
-  const { title, difficulty } = props;
+  const { title, description, difficulty } = props;
   return (
     <article className="quest" data-testid="quest">
       <Show title={title} difficulty={difficulty}></Show>
