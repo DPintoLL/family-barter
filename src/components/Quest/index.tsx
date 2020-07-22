@@ -35,6 +35,7 @@ export default function Quest(props: QuestProps) {
           title={activeStage!.title}
           description={activeStage!.description!}
           difficulty={difficulty}
+          tasks={activeStage!.tasks}
         />
       )}
     </article>

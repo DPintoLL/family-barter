@@ -49,8 +49,9 @@ storiesOf("Stages", module)
       stages={[
         {
           title: "First Stage",
-          description: "The first stage of a quest.",
+          description: "The first stage of a common quest.",
           is_completed: false,
+          tasks: [],
         },
       ]}
     />
@@ -63,13 +64,15 @@ storiesOf("Stages", module)
       stages={[
         {
           title: "First Stage",
-          description: "The first stage of a quest.",
+          description: "The first stage of an uncommon quest.",
           is_completed: true,
+          tasks: [],
         },
         {
           title: "Second Stage",
-          description: "The second stage of a quest.",
+          description: "The second stage of an uncommon quest.",
           is_completed: false,
+          tasks: [],
         },
       ]}
     />
@@ -82,18 +85,21 @@ storiesOf("Stages", module)
       stages={[
         {
           title: "First Stage",
-          description: "The first stage of a quest.",
+          description: "The first stage of a rare quest.",
           is_completed: true,
+          tasks: [],
         },
         {
           title: "Second Stage",
-          description: "The second stage of a quest.",
+          description: "The second stage of a rare quest.",
           is_completed: true,
+          tasks: [],
         },
         {
           title: "Third Stage",
-          description: "The third stage of a quest.",
+          description: "The third stage of a rare quest.",
           is_completed: false,
+          tasks: [],
         },
       ]}
     />
@@ -106,23 +112,27 @@ storiesOf("Stages", module)
       stages={[
         {
           title: "First Stage",
-          description: "The first stage of a quest.",
+          description: "The first stage of a legendary quest.",
           is_completed: true,
+          tasks: [],
         },
         {
           title: "Second Stage",
-          description: "The second stage of a quest.",
+          description: "The second stage of a legendary quest.",
           is_completed: true,
+          tasks: [],
         },
         {
           title: "Third Stage",
-          description: "The third stage of a quest.",
+          description: "The third stage of a legendary quest.",
           is_completed: true,
+          tasks: [],
         },
         {
           title: "Fourth Stage",
-          description: "The fourth stage of a quest.",
+          description: "The fourth stage of a legendary quest.",
           is_completed: false,
+          tasks: [],
         },
       ]}
     />
@@ -135,28 +145,160 @@ storiesOf("Stages", module)
       stages={[
         {
           title: "First Stage",
-          description: "The first stage of a quest.",
+          description: "The first stage of an epic quest.",
           is_completed: true,
+          tasks: [],
         },
         {
           title: "Second Stage",
-          description: "The second stage of a quest.",
+          description: "The second stage of an epic quest.",
           is_completed: true,
+          tasks: [],
         },
         {
           title: "Third Stage",
-          description: "The third stage of a quest.",
+          description: "The third stage of an epic quest.",
           is_completed: true,
+          tasks: [],
         },
         {
           title: "Fourth Stage",
-          description: "The fourth stage of a quest.",
+          description: "The fourth stage of an epic quest.",
           is_completed: true,
+          tasks: [],
         },
         {
           title: "Fifth Stage",
-          description: "The fifth stage of a quest.",
+          description: "The fifth stage of an epic quest.",
           is_completed: false,
+          tasks: [],
+        },
+      ]}
+    />
+  ));
+
+storiesOf("Tasks", module)
+  .add("One Task", () => (
+    <Quest
+      title={"Quest Title"}
+      description={"Quest description."}
+      assigned_to={1}
+      stages={[
+        {
+          title: "One-Task Quest",
+          description: "A quest stage with only a single task to complete.",
+          is_completed: false,
+          tasks: [
+            {
+              name: "The Only Task",
+            },
+          ],
+        },
+      ]}
+    />
+  ))
+  .add("Two Tasks", () => (
+    <Quest
+      title={"Quest Title"}
+      description={"Quest description."}
+      assigned_to={1}
+      stages={[
+        {
+          title: "Two-Task Quest",
+          description: "A quest stage with two tasks to complete.",
+          is_completed: false,
+          tasks: [
+            {
+              name: "First Task",
+            },
+            {
+              name: "Second Task",
+            },
+          ],
+        },
+      ]}
+    />
+  ))
+  .add("Three Tasks", () => (
+    <Quest
+      title={"Quest Title"}
+      description={"Quest description."}
+      assigned_to={1}
+      stages={[
+        {
+          title: "Three-Task Quest",
+          description: "A quest stage with three tasks to complete.",
+          is_completed: false,
+          tasks: [
+            {
+              name: "First Task",
+            },
+            {
+              name: "Second Task",
+            },
+            {
+              name: "Third Task",
+            },
+          ],
+        },
+      ]}
+    />
+  ))
+  .add("Four Tasks", () => (
+    <Quest
+      title={"Quest Title"}
+      description={"Quest description."}
+      assigned_to={1}
+      stages={[
+        {
+          title: "Four-Task Quest",
+          description: "A quest stage with four tasks to complete.",
+          is_completed: false,
+          tasks: [
+            {
+              name: "First Task",
+            },
+            {
+              name: "Second Task",
+            },
+            {
+              name: "Third Task",
+            },
+            {
+              name: "Fourth Task",
+            },
+          ],
+        },
+      ]}
+    />
+  ))
+  .add("Five Tasks", () => (
+    <Quest
+      title={"Quest Title"}
+      description={"Quest description."}
+      assigned_to={1}
+      stages={[
+        {
+          title: "Five-Task Quest",
+          description: "A quest stage with five tasks to complete.",
+          is_completed: false,
+          tasks: [
+            {
+              name: "First Task",
+            },
+            {
+              name: "Second Task",
+            },
+            {
+              name: "Third Task",
+            },
+            {
+              name: "Fourth Task",
+            },
+            {
+              name: "Fifth Task",
+            },
+          ],
         },
       ]}
     />
