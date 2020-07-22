@@ -1,20 +1,22 @@
 import React from "react";
 
-type DifficultyTypes = "common" | "uncommon" | "rare" | "legendary" | "epic";
+import { IDifficulty } from "interfaces";
 
 interface ShowProps {
   title: string;
-  difficulty: DifficultyTypes;
+  description: string;
+  difficulty: IDifficulty;
 }
 
-export default function Show(props: ShowProps) {
-  const { title, difficulty } = props;
+export default function ShowStage(props: ShowProps) {
+  const { title, description, difficulty } = props;
 
   return (
     <section
       className={`quest__card quest__card--show quest__difficulty-${difficulty}`}
     >
       <h4>{title}</h4>
+      <p>{description}</p>
     </section>
   );
 }

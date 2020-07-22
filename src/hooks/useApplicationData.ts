@@ -1,7 +1,7 @@
 import { useReducer, useEffect } from "react";
 import axios from "axios";
 
-import { Quest } from "../interfaces";
+import { IQuest } from "../interfaces";
 
 import reducer, {
   SET_APPLICATION_DATA,
@@ -19,23 +19,21 @@ export function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, {
     quests: [],
     family_members: [],
-    stores: []
+    stores: [],
   });
 
-  // useEffect(() => {
-  //   Promise.all([axios.get("/api/users"), axios.get("/api/quests")]).then(
-  //     (all) => {
-  //       const [family_members, quests] = all.map((res) => res.data);
-  //       dispatch({ type: SET_APPLICATION_DATA, quests, family_members });
-  //     }
-  //   );
-  // }, []);
+  useEffect(() => {
+    Promise.all([axios.get("/api/quests")]).then((all) => {
+      const [quests] = all.map((res) => res.data);
+      dispatch({ type: SET_APPLICATION_DATA, quests });
+    });
+  }, []);
 
   /**
    * Add a new quest.
    * @param {Object} quest
    */
-  function addQuest(quest: Quest) {
+  function addQuest(quest: IQuest) {
     dispatch({ type: ADD_QUEST, quest });
   }
 
@@ -44,7 +42,7 @@ export function useApplicationData() {
    * @param {Number} id
    * @param {Object} quest
    */
-  function editQuest(id: number, quest: Quest) {
+  function editQuest(id: number, quest: IQuest) {
     dispatch({ type: SET_QUEST, id, quest });
   }
 

@@ -1,45 +1,45 @@
 // src/selectors/tasks.js
 
-import { Quest, Stage, State, Task } from "../interfaces";
+import { IQuest, IStage, IState, ITask } from "../interfaces";
 
 /**
  * Returns the task object for a specified id.
  * @param {Object} state
- * @param {Number} id
+ * @param {number} id
  */
-export function getTaskFromStateById(state: State, id: Number): Task | null {
+export function getTaskFromStateById(state: IState, id: number): ITask | null {
   return (
     state.quests
-      .reduce((stages: Array<Stage>, quest: Quest) => {
+      .reduce((stages: IStage[], quest: IQuest) => {
         return stages.concat(quest.stages);
       }, [])
-      .reduce((tasks: Array<Task>, stage: Stage) => {
+      .reduce((tasks: ITask[], stage: IStage) => {
         return tasks.concat(stage.tasks);
       }, [])
-      .find((task: Task) => task.id === id) || null
+      .find((task: ITask) => task.id === id) || null
   );
 }
 
 /**
  * Returns the task object for a specified id.
  * @param {Object} state
- * @param {Number} id
+ * @param {number} id
  */
-export function getTaskFromQuestById(quest: Quest, id: Number): Task | null {
+export function getTaskFromQuestById(quest: IQuest, id: number): ITask | null {
   return (
     quest.stages
-      .reduce((tasks: Array<Task>, stage: Stage) => {
+      .reduce((tasks: ITask[], stage: IStage) => {
         return tasks.concat(stage.tasks);
       }, [])
-      .find((task: Task) => task.id === id) || null
+      .find((task: ITask) => task.id === id) || null
   );
 }
 
 /**
  * Returns the task object for a specified id.
  * @param {Object} stage
- * @param {Number} id
+ * @param {number} id
  */
-export function getTaskFromStageById(stage: Stage, id: Number): Task | null {
-  return stage.tasks.find((task: Task) => task.id === id) || null;
+export function getTaskFromStageById(stage: IStage, id: number): ITask | null {
+  return stage.tasks.find((task: ITask) => task.id === id) || null;
 }
