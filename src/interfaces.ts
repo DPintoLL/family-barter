@@ -31,8 +31,31 @@ export type Quest = {
   updated_by: number | null;
 };
 
+export type Prize = {
+  id: number
+  family_id: number
+  name: string
+  description: string
+  cost: number
+  icon_url: string
+  icon_color: string
+  is_shared: boolean
+  created_at: string
+  created_by: number
+  updated_at: string
+  updated_by: number
+}
+
+export type Store = {
+  id: number;
+  user_id: number;
+  family_id: number;
+  prizes: Prize[];
+}
+
 export interface State {
   quests: Quest[];
+  stores: Store[];
   family_members: Object[];
 }
 
