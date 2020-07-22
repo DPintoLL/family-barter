@@ -12,6 +12,7 @@ const authenticate = (db) => {
       lastName: null,
       email: null,
       password: null,
+      login: null,
       view: null,
     };
 
@@ -49,17 +50,17 @@ const authFromCookie = (req, db) => {
  * @param {object} db - database connection
  */
 const authFromLogin = (req, db) => {
-  const user = db.users.getByEmail(req.body.email);
-
-  if (!req.body.email) {
-    req.errors.email = "please enter an email address";
-  } else if (!req.body.password) {
-    req.errors.password = "please enter a password";
-  } else if (user && db.user.confirmPassword(req.body.password)) {
-    req.session.user_id = user.id;
-    req.user = user;
-  } else {
-    req.errors.password = "No account found for that email and password";
+  if (!req.body.email || !req.body.password) {
+    req.errors.email = req.body.email ? "please enter an email address" : null;
+    req.errors.password = req.body.password ? "please enter a password" : null;
+  } else if (req.body.email && req.body.password) {
+    const user = db.users.getByEmail(req.body.email);
+    if (user && db.user.confirmPassword(req.body.password)) {
+      req.session.user_id = user.id;
+      req.user = user;
+    } else {
+      req.errors.password = "No account found for that email and password";
+    }
   }
   return;
 };
