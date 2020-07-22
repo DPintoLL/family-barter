@@ -20,10 +20,10 @@ module.exports = (db) => {
   router.use("/quests", quests(db));
 
   // ## /{family_id}/prizes routes
-  router.use("/prizes", prizes);
+  router.use("/prizes", prizes(db));
 
   // ## /{family_id}/stores routes
-  router.use("/stores", stores);
+  router.use("/stores", stores(db));
 
   // ## /{family_id}/users routes
   router.use("/users", users(db));

@@ -39,7 +39,7 @@ class QuestTasksTable {
    * @param {Object} task
    */
   add(task) {
-    const { stageId, indexNum, name, description } = task;
+    const { stageId, index, name, description } = task;
 
     const queryString = `
       INSERT INTO quest_tasks (stage_id, index_num, title, description)
@@ -47,7 +47,7 @@ class QuestTasksTable {
       RETURNING *;
     `;
 
-    return this.db.query(queryString, [stageId, indexNum, name, description]);
+    return this.db.query(queryString, [stageId, index, name, description]);
   }
 
   /**
@@ -55,7 +55,7 @@ class QuestTasksTable {
    * @param {Object} task
    */
   update(task) {
-    const { id, stageId, indexNum, name, description, isCompleted } = task;
+    const { id, stageId, index, name, description, isCompleted } = task;
 
     const queryString = `
       UPDATE quest_tasks
@@ -70,7 +70,7 @@ class QuestTasksTable {
     return this.db.query(queryString, [
       id,
       stageId,
-      indexNum,
+      index,
       name,
       description,
       isCompleted,
