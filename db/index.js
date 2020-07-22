@@ -6,6 +6,7 @@ require("dotenv").config();
 const { Pool } = require("pg");
 
 const FamiliesTable = require("./tables/families");
+const UsersTable = require("./tables/users");
 const QuestsTable = require("./tables/quests");
 const QuestStagesTable = require("./tables/quest_stages");
 const QuestTasksTable = require("./tables/quest_tasks");
@@ -19,6 +20,7 @@ class DatabaseConnection {
 
     // Connected database tables
     this.families = new FamiliesTable(this);
+    this.users = new UsersTable(this);
     this.quests = new QuestsTable(this);
     this.stages = new QuestStagesTable(this);
     this.tasks = new QuestTasksTable(this);

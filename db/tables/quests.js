@@ -58,6 +58,7 @@ class QuestsTable {
 
   /**
    * Add a new quest.
+   * @param {Number} familyId
    * @param {Object} quest
    */
   add(familyId, quest) {
@@ -81,7 +82,8 @@ class QuestsTable {
 
   /**
    * Update an existing quest.
-   * @param {Object} quest
+   * @param {Number} questId
+   * @param {Object} data
    */
   update(questId, data) {
     const {
