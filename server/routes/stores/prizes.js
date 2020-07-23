@@ -17,7 +17,7 @@ module.exports = (db) => {
   // Purchase a reward from a store.
   router.post("/:prize_id/purchase", async (req, res) => {
     const { prize_id, store_id } = req.params
-    const user_id = 4 // testing this until auth implemented
+    const user_id = req.session.user_id
     // two updates required, one with the user inventory, one with the store. if the item is already
     // in the inventory of the user, we need to update the inventory and increment, if not we need to
     // create a new record. With the store update we're just changing the inventory value.
