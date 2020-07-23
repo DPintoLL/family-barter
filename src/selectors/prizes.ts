@@ -5,7 +5,6 @@ import { Prize, Store, IState } from "../interfaces";
  * @param {Object} state
  * @param {number} id
  */
-
 export function getPrizeFromStateById(state: IState, id: number): Prize | null {
   return (
     state.stores
