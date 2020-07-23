@@ -19,16 +19,11 @@ export type IStage = {
 
 export type IQuest = {
   id: number;
-  family_id: number;
   title: string;
   description: string;
   base_reward: number;
   assigned_to: number;
   stages: IStage[];
-  created_at: string;
-  created_by: number;
-  updated_at: string;
-  updated_by: number | null;
 };
 
 export type Prize = {

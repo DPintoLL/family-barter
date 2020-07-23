@@ -14,7 +14,7 @@ class QuestsTable {
    */
   all(familyId) {
     const queryString = `
-      SELECT quests.*,
+      SELECT quests.id, quests.title, quests.description, quests.base_reward, quests.assigned_to,
         ARRAY(
           SELECT json_build_object(
             'id', quest_stages.id,
