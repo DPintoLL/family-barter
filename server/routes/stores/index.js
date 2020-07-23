@@ -3,7 +3,6 @@
 const express = require("express");
 const prizes = require("./prizes");
 const router = express.Router({ mergeParams: true });
-const db = require('../../../db')
 
 module.exports = (db) => {
   // ## /{family_id}/stores
