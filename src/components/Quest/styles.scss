@@ -4,11 +4,13 @@
 $quest-height: 10rem;
 $quest-width: 10rem;
 $quest-padding: 1rem;
+$quest-margin: 2rem;
 
 .quest {
   &__card {
     min-height: $quest-height;
     width: $quest-width;
+    margin: $quest-margin;
     padding: $quest-padding;
     display: flex;
     justify-content: space-between;

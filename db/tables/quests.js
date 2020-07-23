@@ -14,14 +14,16 @@ class QuestsTable {
    */
   all(familyId) {
     const queryString = `
-      SELECT quests.title, quests.description, quests.base_reward, quests.assigned_to,
+      SELECT quests.id, quests.title, quests.description, quests.base_reward, quests.assigned_to,
         ARRAY(
           SELECT json_build_object(
+            'id', quest_stages.id,
             'index', quest_stages.index_num,
             'title', quest_stages.title,
             'description', quest_stages.description,
             'tasks', ARRAY(
               SELECT json_build_object(
+                'id', quest_tasks.id,
                 'index', quest_tasks.index_num,
                 'name', quest_tasks.name,
                 'description', quest_tasks.description,
@@ -45,7 +47,7 @@ class QuestsTable {
 
   /**
    * Retrieve a quest by its id.
-   * @param {String} questId
+   * @param {number} questId
    */
   get(questId) {
     const queryString = `
@@ -58,7 +60,7 @@ class QuestsTable {
 
   /**
    * Add a new quest.
-   * @param {Number} familyId
+   * @param {number} familyId
    * @param {Object} quest
    */
   add(familyId, quest) {
@@ -82,7 +84,7 @@ class QuestsTable {
 
   /**
    * Update an existing quest.
-   * @param {Number} questId
+   * @param {number} questId
    * @param {Object} data
    */
   update(questId, data) {
@@ -120,7 +122,7 @@ class QuestsTable {
 
   /**
    * Delete a quest.
-   * @param {Number} questId
+   * @param {number} questId
    */
   delete(questId) {
     const queryString = `
@@ -133,8 +135,8 @@ class QuestsTable {
 
   /**
    * Assign a quest to a user.
-   * @param {Number} questId
-   * @param {Number} userId
+   * @param {number} questId
+   * @param {number} userId
    */
   assign(questId, userId) {
     const queryString = `

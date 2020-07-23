@@ -1,4 +1,4 @@
-import { Action, State } from "../interfaces";
+import { IAction, IState } from "../interfaces";
 import {
   getQuestById,
   getStageFromStateById,
@@ -17,10 +17,10 @@ export const ADD_TASK = "ADD_TASK";
 export const ASSIGN_QUEST = "ASSIGN_QUEST";
 export const COMPLETE_TASK = "COMPLETE_TASK";
 
-export default function reducer(state: State, action: Action) {
+export default function reducer(state: IState, action: IAction) {
   if (action.type === SET_APPLICATION_DATA) {
     const { quests, family_members } = action;
-    return { ...state, quests, family_members } as State;
+    return { ...state, quests, family_members } as IState;
   }
 
   if (action.type === SET_QUEST) {
@@ -30,12 +30,12 @@ export default function reducer(state: State, action: Action) {
       ...state.quests.filter((q) => q.id !== id),
       { ...getQuestById(state, id!), ...quest! },
     ];
-    return { ...state, quests } as State;
+    return { ...state, quests } as IState;
   }
 
   if (action.type === SET_STAGE) {
     const { id, stage } = action;
-    const quest = getQuestById(state, stage!.quest_id);
+    const quest = getQuestById(state, stage!.quest_id!);
 
     const stages = [
       ...quest!.stages.filter((s) => s.id !== id),
@@ -47,13 +47,13 @@ export default function reducer(state: State, action: Action) {
       { ...quest, stages },
     ];
 
-    return { ...state, quests } as State;
+    return { ...state, quests } as IState;
   }
 
   if (action.type === SET_TASK) {
     const { id, task } = action;
-    const stage = getStageFromStateById(state, task!.stage_id);
-    const quest = getQuestById(state, stage!.quest_id);
+    const stage = getStageFromStateById(state, task!.stage_id!);
+    const quest = getQuestById(state, stage!.quest_id!);
 
     const tasks = [
       ...stage!.tasks.filter((t) => t.id !== id!),
@@ -70,7 +70,7 @@ export default function reducer(state: State, action: Action) {
       { ...quest, stages },
     ];
 
-    return { ...state, quests } as State;
+    return { ...state, quests } as IState;
   }
 
   if (action.type === ADD_QUEST) {
@@ -78,7 +78,7 @@ export default function reducer(state: State, action: Action) {
     return {
       ...state,
       quests: [...state.quests, quest],
-    } as State;
+    } as IState;
   }
 
   if (action.type === ADD_STAGE) {
@@ -92,13 +92,13 @@ export default function reducer(state: State, action: Action) {
       { ...quest, stages },
     ];
 
-    return { ...state, quests } as State;
+    return { ...state, quests } as IState;
   }
 
   if (action.type === ADD_TASK) {
     const { id, task } = action;
     const stage = getStageFromStateById(state, id!);
-    const quest = getQuestById(state, stage!.quest_id);
+    const quest = getQuestById(state, stage!.quest_id!);
 
     const tasks = [...stage!.tasks.filter((t) => t.id !== id!), task];
 
@@ -112,7 +112,7 @@ export default function reducer(state: State, action: Action) {
       { ...quest, stages },
     ];
 
-    return { ...state, quests } as State;
+    return { ...state, quests } as IState;
   }
 
   if (action.type === ASSIGN_QUEST) {
@@ -124,14 +124,14 @@ export default function reducer(state: State, action: Action) {
     return {
       ...state,
       quests: [...state.quests.filter((q) => q.id !== id), quest],
-    } as State;
+    } as IState;
   }
 
   if (action.type === COMPLETE_TASK) {
     const { id } = action;
     const task = getTaskFromStateById(state, id!);
-    const stage = getStageFromStateById(state, task!.stage_id);
-    const quest = getQuestById(state, stage!.quest_id);
+    const stage = getStageFromStateById(state, task!.stage_id!);
+    const quest = getQuestById(state, stage!.quest_id!);
 
     const tasks = [
       ...stage!.tasks.filter((t) => t.id !== task!.id),
@@ -148,7 +148,7 @@ export default function reducer(state: State, action: Action) {
       { ...quest, stages },
     ];
 
-    return { ...state, quests } as State;
+    return { ...state, quests } as IState;
   }
 
   throw new Error(

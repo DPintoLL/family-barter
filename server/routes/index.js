@@ -1,8 +1,10 @@
 // ./routes/index.js
-const home = require("./home");
 const login = require("./login");
 const register = require("./register");
-const family = require("./family");
+const quests = require("./quests");
+const prizes = require("./prizes");
+const stores = require("./stores");
+const users = require("./users");
 
 /**
  * Initialize all routers.
@@ -12,6 +14,8 @@ const family = require("./family");
 module.exports = (app, db) => {
   app.use("/login", login(db));
   app.use("/register", register(db));
-  app.use("/:family_id", family(db));
-  app.use("/", home(db));
+  app.use("/quests", quests(db));
+  app.use("/prizes", prizes(db));
+  app.use("/stores", stores(db));
+  app.use("/users", users(db));
 };
