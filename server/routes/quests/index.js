@@ -7,18 +7,14 @@ const tasks = require("./tasks");
 const router = express.Router({ mergeParams: true });
 
 module.exports = (db) => {
-  // ## /{family_id}/quests path
+  // ## /quests path
   // ### GET Method
   // Return list of most recent quests.
   router.get("/", (req, res) => {
     db.quests
-      .all(req.params.family_id)
+      .all(1)
       .then((data) => {
-        res.status(200).json({
-          status: "success",
-          results: data.length,
-          data: data,
-        });
+        res.json(data);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -29,7 +25,7 @@ module.exports = (db) => {
   // Add a new quest.
   router.post("/", (req, res) => {
     db.quests
-      .add(req.params.family_id, req.body)
+      .add(1, req.body)
       .then(() => {
         res.status(201).json({
           status: "success",
@@ -40,32 +36,35 @@ module.exports = (db) => {
       });
   });
 
-  // ## /{family_id}/quests/active
+  // ## /quests/available
   // ### GET Method
   // Return list of currently active quests.
-  router.get("/active", (req, res) => {
-    res.send(`GET /:family_id/quests/active route hit`);
+  router.get("/available", (req, res) => {
+    res.send(`GET /quests/available route hit`);
   });
 
-  // ## /{family_id}/quests/completed
+  // ## /quests/assigned
+  // ### GET Method
+  // Return list of currently active quests.
+  router.get("/assigned", (req, res) => {
+    res.send(`GET /quests/assigned route hit`);
+  });
+
+  // ## /quests/completed
   // ### GET Method
   // Return list of completed quests.
   router.get("/completed", (req, res) => {
-    res.send(`GET /:family_id/quests/completed route hit`);
+    res.send(`GET /quests/completed route hit`);
   });
 
-  // ## /{family_id}/quests/{quest_id}
+  // ## /quests/{quest_id}
   // ### GET Method
   // Return quest object (should have a "next" property with the quest_id of the next stage of the quest, if available).
   router.get("/:quest_id", (req, res) => {
     db.quests
       .get(req.params.quest_id)
       .then((data) => {
-        res.status(200).json({
-          status: "success",
-          results: data.length,
-          data: data,
-        });
+        res.status(200).json(data);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -102,7 +101,7 @@ module.exports = (db) => {
       });
   });
 
-  // ## /{family_id}/quests/{quest_id}/accept
+  // ## quests/{quest_id}/accept
   // ### POST Method
   // Assign user to active quest.
   router.post("/:quest_id/accept", (req, res) => {
@@ -118,10 +117,10 @@ module.exports = (db) => {
       });
   });
 
-  // ## /{family_id}/quests/{quest_id}/reviews routes
+  // ## /quests/{quest_id}/reviews routes
   router.use("/:quest_id/reviews", reviews(db));
 
-  // ## /{family_id}/quests/{quest_id}/tasks routes
+  // ## /quests/{quest_id}/tasks routes
   router.use("/:quest_id/tasks", tasks(db));
 
   return router;

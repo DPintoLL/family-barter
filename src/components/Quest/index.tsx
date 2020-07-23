@@ -1,22 +1,43 @@
 import React from "react";
 
-import Show from "components/Quest/Show";
+import ShowStage from "components/Quest/ShowStage";
+import TitleCard from "components/Quest/TitleCard";
+import { getActiveStage } from "selectors";
+import { IQuest, IDifficulty } from "interfaces";
 
 import "./styles.scss";
 
-type DifficultyTypes = "common" | "uncommon" | "rare" | "legendary" | "epic";
+const DIFFICULTY: IDifficulty[] = [
+  "common",
+  "uncommon",
+  "rare",
+  "legendary",
+  "epic",
+];
 
-interface QuestProps {
-  title: string;
-  description: string;
-  difficulty: DifficultyTypes;
-}
+interface QuestProps extends IQuest {}
 
 export default function Quest(props: QuestProps) {
-  const { title, description, difficulty } = props;
+  const difficulty = DIFFICULTY[props.stages.length - 1];
+  const activeStage = props.assigned_to ? getActiveStage(props.stages) : null;
+
   return (
     <article className="quest" data-testid="quest">
-      <Show title={title} difficulty={difficulty}></Show>
+      {!props.assigned_to && !activeStage && (
+        <TitleCard
+          title={props.title}
+          description={props.description}
+          difficulty={difficulty}
+        />
+      )}
+      {props.assigned_to && activeStage && (
+        <ShowStage
+          title={activeStage!.title}
+          description={activeStage!.description!}
+          difficulty={difficulty}
+          tasks={activeStage!.tasks}
+        />
+      )}
     </article>
   );
 }
