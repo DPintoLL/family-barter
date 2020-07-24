@@ -1,6 +1,6 @@
 import React from "react";
 
-import Quest from "components/Quest";
+import QuestCard from "components/QuestCard";
 import { useApplicationData } from "../hooks/useApplicationData";
 
 export default function App() {
@@ -9,7 +9,7 @@ export default function App() {
   return (
     <main className="App">
       {state.quests.map((quest) => (
-        <Quest
+        <QuestCard
           key={quest.id}
           id={quest.id}
           title={quest.title}

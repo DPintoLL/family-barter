@@ -8,7 +8,7 @@ interface TitleProps {
   difficulty: IDifficulty;
 }
 
-export default function TitleCard(props: TitleProps) {
+export default function TitleView(props: TitleProps) {
   const { title, description, difficulty } = props;
 
   return (

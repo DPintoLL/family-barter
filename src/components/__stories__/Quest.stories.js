@@ -2,39 +2,39 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
-import Quest from "components/Quest";
+import QuestCard from "components/QuestCard";
 
 storiesOf("Quest", module)
   .add("Common Quest", () => (
-    <Quest
+    <QuestCard
       title={"A Common Quest"}
       description={"A quest with only a single stage to complete."}
       stages={[{}]}
     />
   ))
   .add("Uncommon Quest", () => (
-    <Quest
+    <QuestCard
       title={"An Uncommon Quest"}
       description={"A quest with two stages to complete."}
       stages={[{}, {}]}
     />
   ))
   .add("Rare Quest", () => (
-    <Quest
+    <QuestCard
       title={"A Rare Quest"}
       description={"A quest with three stages to complete."}
       stages={[{}, {}, {}]}
     />
   ))
   .add("Legendary Quest", () => (
-    <Quest
+    <QuestCard
       title={"A Legendary Quest"}
       description={"A quest with four stages to complete."}
       stages={[{}, {}, {}, {}]}
     />
   ))
   .add("Epic Quest", () => (
-    <Quest
+    <QuestCard
       title={"An Epic Quest"}
       description={"A quest with five stages to complete."}
       stages={[{}, {}, {}, {}, {}]}
@@ -43,7 +43,7 @@ storiesOf("Quest", module)
 
 storiesOf("Stages", module)
   .add("First Stage", () => (
-    <Quest
+    <QuestCard
       title={"A Common Quest"}
       description={"A quest with only a single stage to complete."}
       assigned_to={1}
@@ -58,7 +58,7 @@ storiesOf("Stages", module)
     />
   ))
   .add("Second Stage", () => (
-    <Quest
+    <QuestCard
       title={"An Uncommon Quest"}
       description={"A quest with two stages to complete."}
       assigned_to={1}
@@ -79,7 +79,7 @@ storiesOf("Stages", module)
     />
   ))
   .add("Third Stage", () => (
-    <Quest
+    <QuestCard
       title={"A Rare Quest"}
       description={"A quest with three stages to complete."}
       assigned_to={1}
@@ -106,7 +106,7 @@ storiesOf("Stages", module)
     />
   ))
   .add("Fourth Stage", () => (
-    <Quest
+    <QuestCard
       title={"A Legendary Quest"}
       description={"A quest with four stages to complete."}
       assigned_to={1}
@@ -139,7 +139,7 @@ storiesOf("Stages", module)
     />
   ))
   .add("Fifth Stage", () => (
-    <Quest
+    <QuestCard
       title={"An Epic Quest"}
       description={"A quest with five stages to complete."}
       assigned_to={1}
@@ -180,7 +180,7 @@ storiesOf("Stages", module)
 
 storiesOf("Tasks", module)
   .add("No Tasks Completed", () => (
-    <Quest
+    <QuestCard
       title={"Quest Title"}
       description={"Quest description."}
       assigned_to={1}
@@ -201,7 +201,7 @@ storiesOf("Tasks", module)
     />
   ))
   .add("One Task Completed", () => (
-    <Quest
+    <QuestCard
       title={"Quest Title"}
       description={"Quest description."}
       assigned_to={1}
@@ -229,7 +229,7 @@ storiesOf("Tasks", module)
     />
   ))
   .add("Two Tasks Completed", () => (
-    <Quest
+    <QuestCard
       title={"Quest Title"}
       description={"Quest description."}
       assigned_to={1}
@@ -262,7 +262,7 @@ storiesOf("Tasks", module)
     />
   ))
   .add("Three Tasks Completed", () => (
-    <Quest
+    <QuestCard
       title={"Quest Title"}
       description={"Quest description."}
       assigned_to={1}
@@ -300,7 +300,7 @@ storiesOf("Tasks", module)
     />
   ))
   .add("Four Tasks Completed", () => (
-    <Quest
+    <QuestCard
       title={"Quest Title"}
       description={"Quest description."}
       assigned_to={1}
@@ -343,7 +343,7 @@ storiesOf("Tasks", module)
     />
   ))
   .add("All Tasks Completed", () => (
-    <Quest
+    <QuestCard
       title={"Quest Title"}
       description={"Quest description."}
       assigned_to={1}

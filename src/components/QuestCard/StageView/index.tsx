@@ -2,12 +2,12 @@ import React from "react";
 import TaskList from "./TaskList";
 import { IDifficulty, IStage } from "interfaces";
 
-interface ShowProps extends IStage {
+interface StageViewProps extends IStage {
   difficulty: IDifficulty;
   setTaskCompletion: Function;
 }
 
-export default function ShowStage(props: ShowProps) {
+export default function StageView(props: StageViewProps) {
   const { title, description, difficulty, tasks, setTaskCompletion } = props;
 
   const incompleteTasks = tasks.filter((task) => task.is_completed !== true);
