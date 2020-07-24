@@ -2,7 +2,6 @@ const PORT = process.env.PORT || 8000;
 const ENV = require("./environment");
 
 const express = require("express");
-const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 
 const { authenticate } = require("./middleware/authenticate");
@@ -11,7 +10,9 @@ const db = require("../db");
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+
 app.use(
   cookieSession({
     name: "session",

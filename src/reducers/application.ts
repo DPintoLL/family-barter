@@ -15,7 +15,7 @@ export const ADD_QUEST = "ADD_QUEST";
 export const ADD_STAGE = "ADD_STAGE";
 export const ADD_TASK = "ADD_TASK";
 export const ASSIGN_QUEST = "ASSIGN_QUEST";
-export const COMPLETE_TASK = "COMPLETE_TASK";
+export const SET_TASK_COMPLETION = "SET_TASK_COMPLETION";
 
 export default function reducer(state: IState, action: IAction) {
   if (action.type === SET_APPLICATION_DATA) {
@@ -127,15 +127,15 @@ export default function reducer(state: IState, action: IAction) {
     } as IState;
   }
 
-  if (action.type === COMPLETE_TASK) {
-    const { id } = action;
+  if (action.type === SET_TASK_COMPLETION) {
+    const { id, isComplete } = action;
     const task = getTaskFromStateById(state, id!);
     const stage = getStageFromStateById(state, task!.stage_id!);
     const quest = getQuestById(state, stage!.quest_id!);
 
     const tasks = [
       ...stage!.tasks.filter((t) => t.id !== task!.id),
-      { ...task, is_completed: true },
+      { ...task, is_completed: isComplete },
     ];
 
     const stages = [

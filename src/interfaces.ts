@@ -1,5 +1,6 @@
 export type ITask = {
   id: number;
+  index: number;
   name: string;
   description: string | null;
   is_completed: boolean;
@@ -64,5 +65,6 @@ export interface IAction {
   quests?: IQuest[];
   stage?: IStage;
   task?: ITask;
+  isComplete?: boolean;
   family_members?: Object[];
 }

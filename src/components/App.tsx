@@ -4,7 +4,7 @@ import Quest from "components/Quest";
 import { useApplicationData } from "../hooks/useApplicationData";
 
 export default function App() {
-  const { state, acceptQuest } = useApplicationData();
+  const { state, acceptQuest, setTaskCompletion } = useApplicationData();
 
   return (
     <main className="App">
@@ -17,6 +17,7 @@ export default function App() {
           base_reward={quest.base_reward}
           assigned_to={quest.assigned_to}
           stages={quest.stages}
+          setTaskCompletion={setTaskCompletion}
         />
       ))}
     </main>

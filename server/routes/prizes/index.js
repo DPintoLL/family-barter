@@ -1,11 +1,9 @@
 // ./routes/prizes/index.js
 const express = require("express");
 const router = express.Router({ mergeParams: true });
-router.use(express.urlencoded({ extended: true }))
-router.use(express.json())
-router.use(express.raw())
+
 module.exports = (db) => {
-  // ## /{family_id}/prizes
+  // ## /prizes
   // ### GET Method
   // Return list of available prizes.
   router.get("/", (req, res) => {
@@ -57,7 +55,7 @@ module.exports = (db) => {
     .finally(db)
   });
 
-  // ## /{family_id}/prizes/{prize_id}
+  // ## /prizes/{prize_id}
   // ### GET Method
   // Get details of a prizes.
   router.get("/:prize_id", async (req, res) => {

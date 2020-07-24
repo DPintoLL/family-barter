@@ -1,5 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 
 import Quest from "components/Quest";
 
@@ -178,7 +179,7 @@ storiesOf("Stages", module)
   ));
 
 storiesOf("Tasks", module)
-  .add("One Task", () => (
+  .add("No Tasks Completed", () => (
     <Quest
       title={"Quest Title"}
       description={"Quest description."}
@@ -190,14 +191,16 @@ storiesOf("Tasks", module)
           is_completed: false,
           tasks: [
             {
-              name: "The Only Task",
+              id: 1,
+              name: "Just One Task",
             },
           ],
         },
       ]}
+      setTaskCompletion={action("setTaskCompletion")}
     />
   ))
-  .add("Two Tasks", () => (
+  .add("One Task Completed", () => (
     <Quest
       title={"Quest Title"}
       description={"Quest description."}
@@ -209,17 +212,22 @@ storiesOf("Tasks", module)
           is_completed: false,
           tasks: [
             {
+              id: 1,
               name: "First Task",
+              is_completed: true,
             },
             {
+              id: 2,
               name: "Second Task",
+              is_completed: false,
             },
           ],
         },
       ]}
+      setTaskCompletion={action("setTaskCompletion")}
     />
   ))
-  .add("Three Tasks", () => (
+  .add("Two Tasks Completed", () => (
     <Quest
       title={"Quest Title"}
       description={"Quest description."}
@@ -231,20 +239,27 @@ storiesOf("Tasks", module)
           is_completed: false,
           tasks: [
             {
+              id: 1,
               name: "First Task",
+              is_completed: true,
             },
             {
+              id: 2,
               name: "Second Task",
+              is_completed: true,
             },
             {
+              id: 3,
               name: "Third Task",
+              is_completed: false,
             },
           ],
         },
       ]}
+      setTaskCompletion={action("setTaskCompletion")}
     />
   ))
-  .add("Four Tasks", () => (
+  .add("Three Tasks Completed", () => (
     <Quest
       title={"Quest Title"}
       description={"Quest description."}
@@ -256,23 +271,32 @@ storiesOf("Tasks", module)
           is_completed: false,
           tasks: [
             {
+              id: 1,
               name: "First Task",
+              is_completed: true,
             },
             {
+              id: 2,
               name: "Second Task",
+              is_completed: true,
             },
             {
+              id: 3,
               name: "Third Task",
+              is_completed: true,
             },
             {
+              id: 4,
               name: "Fourth Task",
+              is_completed: false,
             },
           ],
         },
       ]}
+      setTaskCompletion={action("setTaskCompletion")}
     />
   ))
-  .add("Five Tasks", () => (
+  .add("Four Tasks Completed", () => (
     <Quest
       title={"Quest Title"}
       description={"Quest description."}
@@ -284,22 +308,75 @@ storiesOf("Tasks", module)
           is_completed: false,
           tasks: [
             {
+              id: 1,
               name: "First Task",
+              is_completed: true,
             },
             {
+              id: 2,
               name: "Second Task",
+              is_completed: true,
             },
             {
+              id: 3,
               name: "Third Task",
+              is_completed: true,
             },
             {
+              id: 4,
               name: "Fourth Task",
+              is_completed: true,
             },
             {
+              id: 5,
               name: "Fifth Task",
+              is_completed: false,
             },
           ],
         },
       ]}
+      setTaskCompletion={action("setTaskCompletion")}
+    />
+  ))
+  .add("All Tasks Completed", () => (
+    <Quest
+      title={"Quest Title"}
+      description={"Quest description."}
+      assigned_to={1}
+      stages={[
+        {
+          title: "Five-Task Quest",
+          description: "A quest stage with five tasks to complete.",
+          is_completed: false,
+          tasks: [
+            {
+              id: 1,
+              name: "First Task",
+              is_completed: true,
+            },
+            {
+              id: 2,
+              name: "Second Task",
+              is_completed: true,
+            },
+            {
+              id: 3,
+              name: "Third Task",
+              is_completed: true,
+            },
+            {
+              id: 4,
+              name: "Fourth Task",
+              is_completed: true,
+            },
+            {
+              id: 5,
+              name: "Fifth Task",
+              is_completed: true,
+            },
+          ],
+        },
+      ]}
+      setTaskCompletion={action("setTaskCompletion")}
     />
   ));

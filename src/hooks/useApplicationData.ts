@@ -12,7 +12,7 @@ import reducer, {
   ADD_STAGE,
   ADD_TASK,
   ASSIGN_QUEST,
-  COMPLETE_TASK,
+  SET_TASK_COMPLETION,
 } from "reducers/application";
 
 export function useApplicationData() {
@@ -23,7 +23,11 @@ export function useApplicationData() {
   });
 
   useEffect(() => {
-    Promise.all([axios.get("/quests"), axios.get("/prizes"), axios.get("/stores")]).then((all) => {
+    Promise.all([
+      axios.get("/quests"),
+      axios.get("/prizes"),
+      axios.get("/stores"),
+    ]).then((all) => {
       const [quests] = all.map((res) => res.data);
       dispatch({ type: SET_APPLICATION_DATA, quests });
     });
@@ -90,11 +94,12 @@ export function useApplicationData() {
   }
 
   /**
-   * Complete a task.
+   * Toggle task completion.
    * @param {number} id
+   * @param {boolean} isComplete
    */
-  function completeTask(id: number) {
-    dispatch({ type: COMPLETE_TASK, id });
+  function setTaskCompletion(id: number, isComplete: boolean) {
+    dispatch({ type: SET_TASK_COMPLETION, id, isComplete });
   }
 
   return {
@@ -106,6 +111,6 @@ export function useApplicationData() {
     editStage,
     addTask,
     editTask,
-    completeTask,
+    setTaskCompletion,
   };
 }

@@ -17,6 +17,7 @@ export default function TitleCard(props: TitleProps) {
     >
       <h4>{title}</h4>
       <p>{description}</p>
+      <button>Accept</button>
     </section>
   );
 }

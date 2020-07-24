@@ -2,7 +2,6 @@
 
 const express = require("express");
 const reviews = require("./reviews");
-const tasks = require("./tasks");
 
 const router = express.Router({ mergeParams: true });
 
@@ -119,9 +118,6 @@ module.exports = (db) => {
 
   // ## /quests/{quest_id}/reviews routes
   router.use("/:quest_id/reviews", reviews(db));
-
-  // ## /quests/{quest_id}/tasks routes
-  router.use("/:quest_id/tasks", tasks(db));
 
   return router;
 };

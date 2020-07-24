@@ -1,6 +1,6 @@
 import React from "react";
 
-import ShowStage from "components/Quest/ShowStage";
+import ShowStage from "components/Quest/Stage";
 import TitleCard from "components/Quest/TitleCard";
 import { getActiveStage } from "selectors";
 import { IQuest, IDifficulty } from "interfaces";
@@ -15,7 +15,9 @@ const DIFFICULTY: IDifficulty[] = [
   "epic",
 ];
 
-interface QuestProps extends IQuest {}
+interface QuestProps extends IQuest {
+  setTaskCompletion: Function;
+}
 
 export default function Quest(props: QuestProps) {
   const difficulty = DIFFICULTY[props.stages.length - 1];
@@ -32,10 +34,14 @@ export default function Quest(props: QuestProps) {
       )}
       {props.assigned_to && activeStage && (
         <ShowStage
+          id={activeStage!.id}
+          index={activeStage!.index}
           title={activeStage!.title}
           description={activeStage!.description!}
           difficulty={difficulty}
           tasks={activeStage!.tasks}
+          is_completed={activeStage!.is_completed}
+          setTaskCompletion={props.setTaskCompletion}
         />
       )}
     </article>

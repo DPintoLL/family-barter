@@ -89,6 +89,32 @@ class QuestTasksTable {
 
     return this.db.query(queryString, [taskId]);
   }
+
+  /**
+   * Mark a task as complete.
+   * @param {number} taskId
+   */
+  markComplete(taskId) {
+    const queryString = `
+      UPDATE quest_tasks
+      SET is_completed = true
+      WHERE id = $1;
+    `;
+    return this.db.query(queryString, [taskId]);
+  }
+
+  /**
+   * Mark a task as incomplete.
+   * @param {number} taskId
+   */
+  markIncomplete(taskId) {
+    const queryString = `
+      UPDATE quest_tasks
+      SET is_completed = false
+      WHERE id = $1;
+    `;
+    return this.db.query(queryString, [taskId]);
+  }
 }
 
 module.exports = QuestTasksTable;
