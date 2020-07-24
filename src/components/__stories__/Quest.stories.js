@@ -192,7 +192,7 @@ storiesOf("Tasks", module)
           tasks: [
             {
               id: 1,
-              name: "Just One Task",
+              name: "Only Task",
             },
           ],
         },
@@ -208,7 +208,8 @@ storiesOf("Tasks", module)
       stages={[
         {
           title: "Two-Task Quest",
-          description: "A quest stage with two tasks to complete.",
+          description:
+            "A quest stage with two tasks to complete; one completed.",
           is_completed: false,
           tasks: [
             {
@@ -235,7 +236,8 @@ storiesOf("Tasks", module)
       stages={[
         {
           title: "Three-Task Quest",
-          description: "A quest stage with three tasks to complete.",
+          description:
+            "A quest stage with three tasks to complete; two completed.",
           is_completed: false,
           tasks: [
             {
@@ -267,7 +269,8 @@ storiesOf("Tasks", module)
       stages={[
         {
           title: "Four-Task Quest",
-          description: "A quest stage with four tasks to complete.",
+          description:
+            "A quest stage with four tasks to complete; three completed.",
           is_completed: false,
           tasks: [
             {
@@ -304,7 +307,8 @@ storiesOf("Tasks", module)
       stages={[
         {
           title: "Five-Task Quest",
-          description: "A quest stage with five tasks to complete.",
+          description:
+            "A quest stage with five tasks to complete; four completed.",
           is_completed: false,
           tasks: [
             {
@@ -346,7 +350,8 @@ storiesOf("Tasks", module)
       stages={[
         {
           title: "Five-Task Quest",
-          description: "A quest stage with five tasks to complete.",
+          description:
+            "A quest stage with five tasks to complete; all five completed.",
           is_completed: false,
           tasks: [
             {
