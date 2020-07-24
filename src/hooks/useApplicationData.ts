@@ -23,7 +23,7 @@ export function useApplicationData() {
   });
 
   useEffect(() => {
-    Promise.all([axios.get("/quests")]).then((all) => {
+    Promise.all([axios.get("/quests"), axios.get("/prizes"), axios.get("/stores")]).then((all) => {
       const [quests] = all.map((res) => res.data);
       dispatch({ type: SET_APPLICATION_DATA, quests });
     });

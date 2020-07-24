@@ -3,14 +3,17 @@
 const express = require("express");
 const prizes = require("./prizes");
 const router = express.Router({ mergeParams: true });
-const db = require('../../../db')
 
 module.exports = (db) => {
   // ## /{family_id}/stores
   // ### GET Method
   // Get list of available stores.
-  router.get("/", (req, res) => {
-    res.send(`GET /:family_id/stores route hit`);
+  router.get("/", async (req, res) => {
+    const { family_id } = req.params
+    const data = await db.query(`
+      SELECT * FROM stores WHERE stores.family_id = $1
+    `, [family_id])
+    res.send(data)
   });
 
   // ## /{family_id}/stores/{store_id}
