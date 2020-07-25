@@ -17,6 +17,7 @@ export default function App() {
           base_reward={quest.base_reward}
           assigned_to={quest.assigned_to}
           stages={quest.stages}
+          acceptQuest={acceptQuest}
           setTaskCompletion={setTaskCompletion}
         />
       ))}

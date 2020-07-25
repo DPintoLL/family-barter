@@ -4,7 +4,7 @@ import { action } from "@storybook/addon-actions";
 
 import QuestCard from "components/QuestCard";
 
-storiesOf("Quest", module)
+storiesOf("Quest Cards", module)
   .add("Common Quest", () => (
     <QuestCard
       title={"A Common Quest"}
@@ -41,7 +41,7 @@ storiesOf("Quest", module)
     />
   ));
 
-storiesOf("Stages", module)
+storiesOf("Stage Views", module)
   .add("First Stage", () => (
     <QuestCard
       title={"A Common Quest"}
@@ -178,7 +178,7 @@ storiesOf("Stages", module)
     />
   ));
 
-storiesOf("Tasks", module)
+storiesOf("Task List", module)
   .add("No Tasks Completed", () => (
     <QuestCard
       title={"Quest Title"}

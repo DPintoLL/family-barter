@@ -15,6 +15,7 @@ export default function StageView(props: StageViewProps) {
   return (
     <section
       className={`quest__card quest__card--show quest__difficulty-${difficulty}`}
+      data-testid="quest-card-stage"
     >
       <h4>{title}</h4>
       <p>{description}</p>

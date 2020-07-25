@@ -25,7 +25,7 @@ export default function TaskList(props: TaskListProps) {
     <details>
       <summary>{"Tasks"}</summary>
       <form autoComplete="off" onSubmit={(event) => event.preventDefault()}>
-        <ol className="task-list">
+        <ol className="task-list" data-testid="task-list">
           {tasks.map((task, idx, arr) => (
             <TaskListItem
               key={task.index}

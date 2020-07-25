@@ -16,6 +16,7 @@ const DIFFICULTY: IDifficulty[] = [
 ];
 
 interface QuestProps extends IQuest {
+  acceptQuest: Function;
   setTaskCompletion: Function;
 }
 
@@ -27,9 +28,11 @@ export default function QuestCard(props: QuestProps) {
     <article className="quest" data-testid="quest">
       {!props.assigned_to && !activeStage && (
         <TitleView
+          id={props.id}
           title={props.title}
           description={props.description}
           difficulty={difficulty}
+          acceptQuest={props.acceptQuest}
         />
       )}
       {props.assigned_to && activeStage && (

@@ -16,11 +16,11 @@ export default function TaskListItem(props: TaskListItemProps) {
   };
 
   return (
-    <li>
+    <li data-testid="task-list-item">
       <label>
         <input
           type="checkbox"
-          checked={is_completed}
+          defaultChecked={is_completed}
           disabled={isDisabled}
           onClick={onClick}
         />

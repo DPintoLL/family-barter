@@ -13,7 +13,7 @@ module.exports = (db) => {
     db.quests
       .all(1)
       .then((data) => {
-        res.json(data);
+        res.status(200).json(data);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -25,10 +25,8 @@ module.exports = (db) => {
   router.post("/", (req, res) => {
     db.quests
       .add(1, req.body)
-      .then(() => {
-        res.status(201).json({
-          status: "success",
-        });
+      .then((data) => {
+        res.status(201).json(data);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -76,9 +74,7 @@ module.exports = (db) => {
     db.quests
       .update(req.params.quest_id, req.body)
       .then(() => {
-        res.status(204).json({
-          status: "success",
-        });
+        res.sendStatus(204);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -91,9 +87,7 @@ module.exports = (db) => {
     db.quests
       .delete(req.params.quest_id)
       .then(() => {
-        res.status(204).json({
-          status: "success",
-        });
+        res.sendStatus(204);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -107,9 +101,7 @@ module.exports = (db) => {
     db.quests
       .assign(req.params.quest_id, req.body.user_id)
       .then(() => {
-        res.status(204).json({
-          status: "success",
-        });
+        res.sendStatus(204);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });

@@ -52,6 +52,7 @@ export type Store = {
 export type IDifficulty = "common" | "uncommon" | "rare" | "legendary" | "epic";
 
 export interface IState {
+  user: { id: number; family_id: number };
   quests: IQuest[];
   stores: Store[];
   family_members: Object[];

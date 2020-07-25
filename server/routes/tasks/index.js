@@ -4,6 +4,20 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 
 module.exports = (db) => {
+  // ## /tasks
+  // ### POST Method
+  // Add a new task.
+  router.post("/", (req, res) => {
+    db.tasks
+      .add(req.body)
+      .then(() => {
+        res.sendStatus(201);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
   // ## /tasks/{task_id}/complete
   // ### POST Method
   // Mark a quest tasks as complete.
@@ -11,9 +25,7 @@ module.exports = (db) => {
     db.tasks
       .markComplete(req.task_id)
       .then(() => {
-        res.status(201).json({
-          status: "success",
-        });
+        res.sendStatus(204);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -27,9 +39,7 @@ module.exports = (db) => {
     db.tasks
       .markIncomplete(req.task_id)
       .then(() => {
-        res.status(201).json({
-          status: "success",
-        });
+        res.sendStatus(204);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });

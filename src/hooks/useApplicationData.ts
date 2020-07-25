@@ -17,6 +17,10 @@ import reducer, {
 
 export function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, {
+    user: {
+      id: 1,
+      family_id: 1,
+    },
     quests: [],
     family_members: [],
     stores: [],
@@ -55,8 +59,8 @@ export function useApplicationData() {
    * @param {number} questId
    * @param {number} userId
    */
-  function acceptQuest(questId: number, userId: number) {
-    dispatch({ type: ASSIGN_QUEST, id: questId, assigned_to: userId });
+  function acceptQuest(questId: number) {
+    dispatch({ type: ASSIGN_QUEST, id: questId, assigned_to: state.user.id });
   }
 
   /**
