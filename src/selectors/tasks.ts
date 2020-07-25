@@ -7,7 +7,7 @@ import { IQuest, IStage, IState, ITask } from "../interfaces";
  * @param {Object} state
  * @param {number} id
  */
-export function getTaskFromStateById(state: IState, id: number): ITask | null {
+export function getTaskById(state: IState, id: number): ITask | null {
   return (
     state.quests
       .reduce((stages: IStage[], quest: IQuest) => {

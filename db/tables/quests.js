@@ -18,12 +18,14 @@ class QuestsTable {
         ARRAY(
           SELECT json_build_object(
             'id', quest_stages.id,
+            'quest_id', quest_stages.quest_id,
             'index', quest_stages.index_num,
             'title', quest_stages.title,
             'description', quest_stages.description,
             'tasks', ARRAY(
               SELECT json_build_object(
                 'id', quest_tasks.id,
+                'stage_id', quest_tasks.stage_id,
                 'index', quest_tasks.index_num,
                 'name', quest_tasks.name,
                 'description', quest_tasks.description,

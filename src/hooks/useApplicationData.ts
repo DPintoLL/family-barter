@@ -8,12 +8,9 @@ import reducer, {
   SET_QUEST,
   SET_STAGE,
   SET_TASK,
-  ADD_QUEST,
-  ADD_STAGE,
-  ADD_TASK,
-  ASSIGN_QUEST,
-  SET_TASK_COMPLETION,
 } from "reducers/application";
+
+import { getQuestById, getStageById, getTaskById } from "../selectors";
 
 export function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, {
@@ -42,7 +39,7 @@ export function useApplicationData() {
    * @param {Object} quest
    */
   function addQuest(quest: IQuest) {
-    dispatch({ type: ADD_QUEST, quest });
+    dispatch({ type: SET_QUEST, quest });
   }
 
   /**
@@ -50,8 +47,9 @@ export function useApplicationData() {
    * @param {number} id
    * @param {Object} quest
    */
-  function editQuest(id: number, quest: IQuest) {
-    dispatch({ type: SET_QUEST, id, quest });
+  function editQuest(id: number, data: Object) {
+    const quest = Object.assign(getQuestById(state, id), data);
+    dispatch({ type: SET_QUEST, quest });
   }
 
   /**
@@ -60,7 +58,9 @@ export function useApplicationData() {
    * @param {number} userId
    */
   function acceptQuest(questId: number) {
-    dispatch({ type: ASSIGN_QUEST, id: questId, assigned_to: state.user.id });
+    editQuest(questId, {
+      assigned_to: state.user.id,
+    });
   }
 
   /**
@@ -68,7 +68,7 @@ export function useApplicationData() {
    * @param {Object} stage
    */
   function addStage(stage: IStage) {
-    dispatch({ type: ADD_STAGE, stage });
+    dispatch({ type: SET_STAGE, stage });
   }
 
   /**
@@ -76,8 +76,9 @@ export function useApplicationData() {
    * @param {number} id
    * @param {Object} stage
    */
-  function editStage(id: number, stage: IStage) {
-    dispatch({ type: SET_STAGE, id, stage });
+  function editStage(id: number, data: Object) {
+    const stage = Object.assign(getStageById(state, id), data);
+    dispatch({ type: SET_STAGE, stage });
   }
 
   /**
@@ -85,16 +86,17 @@ export function useApplicationData() {
    * @param {Object} task
    */
   function addTask(task: ITask) {
-    dispatch({ type: ADD_TASK, task });
+    dispatch({ type: SET_TASK, task });
   }
 
   /**
    * Edit an existing task.
    * @param {number} id
-   * @param {Object} task
+   * @param {Object} data
    */
-  function editTask(id: number, task: ITask) {
-    dispatch({ type: SET_TASK, id, task });
+  function editTask(id: number, data: Object) {
+    const task = Object.assign(getTaskById(state, id), data);
+    dispatch({ type: SET_TASK, task });
   }
 
   /**
@@ -102,8 +104,8 @@ export function useApplicationData() {
    * @param {number} id
    * @param {boolean} isComplete
    */
-  function setTaskCompletion(id: number, isComplete: boolean) {
-    dispatch({ type: SET_TASK_COMPLETION, id, isComplete });
+  function setTaskCompletion(id: number, is_complete: boolean) {
+    editTask(id, { is_complete });
   }
 
   return {

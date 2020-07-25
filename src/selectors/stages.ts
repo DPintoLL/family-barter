@@ -7,10 +7,7 @@ import { IQuest, IStage, IState } from "../interfaces";
  * @param {Object} state
  * @param {Number} id
  */
-export function getStageFromStateById(
-  state: IState,
-  id: number
-): IStage | null {
+export function getStageById(state: IState, id: number): IStage | null {
   return (
     state.quests
       .reduce((stages: IStage[], quest: IQuest) => {

@@ -31,7 +31,7 @@ export default function TaskList(props: TaskListProps) {
               key={task.index}
               id={task.id}
               name={task.name}
-              checked={task.is_completed}
+              is_completed={task.is_completed}
               disabled={isDisabled(idx, arr)}
               setTaskCompletion={setTaskCompletion}
             />

@@ -1,20 +1,10 @@
-import { IAction, IState } from "../interfaces";
-import {
-  getQuestById,
-  getStageFromStateById,
-  getStageFromQuestById,
-  getTaskFromStateById,
-  getTaskFromStageById,
-} from "../selectors";
+import { IAction, IQuest, IState, IStage, ITask } from "../interfaces";
+import { getQuestById, getStageById } from "../selectors";
 
 export const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
 export const SET_QUEST = "SET_QUEST";
 export const SET_STAGE = "SET_STAGE";
 export const SET_TASK = "SET_TASK";
-export const ADD_QUEST = "ADD_QUEST";
-export const ADD_STAGE = "ADD_STAGE";
-export const ADD_TASK = "ADD_TASK";
-export const ASSIGN_QUEST = "ASSIGN_QUEST";
 export const SET_TASK_COMPLETION = "SET_TASK_COMPLETION";
 
 export default function reducer(state: IState, action: IAction) {
@@ -24,134 +14,74 @@ export default function reducer(state: IState, action: IAction) {
   }
 
   if (action.type === SET_QUEST) {
-    const { id, quest } = action;
+    const { quest } = action;
 
-    const quests = [
-      ...state.quests.filter((q) => q.id !== id),
-      { ...getQuestById(state, id!), ...quest! },
-    ];
-    return { ...state, quests } as IState;
+    return addQuestToState(quest as IQuest, state);
   }
 
   if (action.type === SET_STAGE) {
-    const { id, stage } = action;
-    const quest = getQuestById(state, stage!.quest_id!);
+    const { stage } = action;
+    const quest = addStageToQuest(
+      stage as IStage,
+      getQuestById(state, stage!.quest_id!) as IQuest
+    );
 
-    const stages = [
-      ...quest!.stages.filter((s) => s.id !== id),
-      { ...getStageFromQuestById(quest!, id!), ...stage! },
-    ];
-
-    const quests = [
-      ...state.quests.filter((q) => q.id !== quest!.id),
-      { ...quest, stages },
-    ];
-
-    return { ...state, quests } as IState;
+    return addQuestToState(quest, state);
   }
 
   if (action.type === SET_TASK) {
-    const { id, task } = action;
-    const stage = getStageFromStateById(state, task!.stage_id!);
-    const quest = getQuestById(state, stage!.quest_id!);
+    const { task } = action;
 
-    const tasks = [
-      ...stage!.tasks.filter((t) => t.id !== id!),
-      { ...getTaskFromStageById(stage!, id!), ...task! },
-    ];
+    const stage = addTaskToStage(
+      task as ITask,
+      getStageById(state, task!.stage_id!) as IStage
+    );
 
-    const stages = [
-      ...quest!.stages.filter((s) => s.id !== stage!.id),
-      { ...stage, tasks },
-    ];
+    const quest = addStageToQuest(
+      stage,
+      getQuestById(state, stage!.quest_id!) as IQuest
+    );
 
-    const quests = [
-      ...state.quests.filter((q) => q.id !== quest!.id),
-      { ...quest, stages },
-    ];
-
-    return { ...state, quests } as IState;
-  }
-
-  if (action.type === ADD_QUEST) {
-    const { quest } = action;
-    return {
-      ...state,
-      quests: [...state.quests, quest],
-    } as IState;
-  }
-
-  if (action.type === ADD_STAGE) {
-    const { id, stage } = action;
-    const quest = getQuestById(state, id!);
-
-    const stages = [...quest!.stages, stage];
-
-    const quests = [
-      ...state.quests.filter((q) => q.id !== id),
-      { ...quest, stages },
-    ];
-
-    return { ...state, quests } as IState;
-  }
-
-  if (action.type === ADD_TASK) {
-    const { id, task } = action;
-    const stage = getStageFromStateById(state, id!);
-    const quest = getQuestById(state, stage!.quest_id!);
-
-    const tasks = [...stage!.tasks.filter((t) => t.id !== id!), task];
-
-    const stages = [
-      ...quest!.stages.filter((s) => s.id !== stage!.id),
-      { ...stage, tasks },
-    ];
-
-    const quests = [
-      ...state.quests.filter((q) => q.id !== quest!.id),
-      { ...quest, stages },
-    ];
-
-    return { ...state, quests } as IState;
-  }
-
-  if (action.type === ASSIGN_QUEST) {
-    const { id, assigned_to } = action;
-    const quest = {
-      ...getQuestById(state, id!),
-      assigned_to,
-    };
-    return {
-      ...state,
-      quests: [...state.quests.filter((q) => q.id !== id), quest],
-    } as IState;
-  }
-
-  if (action.type === SET_TASK_COMPLETION) {
-    const { id, isComplete } = action;
-    const task = getTaskFromStateById(state, id!);
-    const stage = getStageFromStateById(state, task!.stage_id!);
-    const quest = getQuestById(state, stage!.quest_id!);
-
-    const tasks = [
-      ...stage!.tasks.filter((t) => t.id !== task!.id),
-      { ...task, is_completed: isComplete },
-    ];
-
-    const stages = [
-      ...quest!.stages.filter((s) => s.id !== stage!.id),
-      { ...stage, tasks },
-    ];
-
-    const quests = [
-      ...state.quests.filter((q) => q.id !== quest!.id),
-      { ...quest, stages },
-    ];
-
-    return { ...state, quests } as IState;
+    return addQuestToState(quest, state);
   }
 
   throw new Error(
     `Tried to reduce with unsupported action type: ${action.type}`
   );
 }
+
+const addTaskToStage = (task: ITask, stage: IStage): IStage => {
+  const tasks = [
+    ...stage!.tasks.filter((t) => t.id !== task!.id),
+    task as ITask,
+  ] as ITask[];
+
+  return {
+    ...stage,
+    tasks: tasks.sort((a: ITask, b: ITask) => a.index - b.index),
+  } as IStage;
+};
+
+const addStageToQuest = (stage: IStage, quest: IQuest): IQuest => {
+  const stages = [
+    ...quest!.stages.filter((s) => s.id !== stage!.id),
+    stage,
+  ] as IStage[];
+
+  return {
+    ...quest,
+    stages: stages.sort((a: IStage, b: IStage) => a.index - b.index),
+  } as IQuest;
+};
+
+const addQuestToState = (quest: IQuest, state: IState) => {
+  const quests = [
+    ...state.quests.filter((q) => q.id !== quest!.id),
+    quest,
+  ] as IQuest[];
+
+  return {
+    ...state,
+    quests: quests.sort((a: IQuest, b: IQuest) => a.id - b.id),
+  } as IState;
+};
