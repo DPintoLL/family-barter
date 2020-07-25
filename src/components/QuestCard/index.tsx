@@ -17,6 +17,7 @@ const DIFFICULTY: IDifficulty[] = [
 
 interface QuestProps extends IQuest {
   acceptQuest: Function;
+  completeStage: Function;
   setTaskCompletion: Function;
 }
 
@@ -44,6 +45,7 @@ export default function QuestCard(props: QuestProps) {
           difficulty={difficulty}
           tasks={activeStage!.tasks}
           is_completed={activeStage!.is_completed}
+          completeStage={props.completeStage}
           setTaskCompletion={props.setTaskCompletion}
         />
       )}

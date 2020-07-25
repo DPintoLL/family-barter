@@ -82,6 +82,14 @@ export function useApplicationData() {
   }
 
   /**
+   * Mark a stage as completed.
+   * @param {number} id - Stage id
+   */
+  function completeStage(id: number) {
+    editStage(id, { is_completed: true });
+  }
+
+  /**
    * Add a new task.
    * @param {Object} task
    */
@@ -104,8 +112,8 @@ export function useApplicationData() {
    * @param {number} id
    * @param {boolean} isComplete
    */
-  function setTaskCompletion(id: number, is_complete: boolean) {
-    editTask(id, { is_complete });
+  function setTaskCompletion(id: number, is_completed: boolean) {
+    editTask(id, { is_completed });
   }
 
   return {
@@ -115,6 +123,7 @@ export function useApplicationData() {
     acceptQuest,
     addStage,
     editStage,
+    completeStage,
     addTask,
     editTask,
     setTaskCompletion,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 interface TaskListItemProps {
   id: number;
@@ -10,24 +10,17 @@ interface TaskListItemProps {
 
 export default function TaskListItem(props: TaskListItemProps) {
   const { id, name, is_completed, disabled, setTaskCompletion } = props;
-  const [checked, setChecked] = useState(false);
 
   const onChange = (event: React.ChangeEvent) => {
-    event.preventDefault();
-    setTaskCompletion(id, !checked);
-    setChecked((prev) => !prev);
+    setTaskCompletion(id, !is_completed);
   };
-
-  useEffect(() => {
-    setChecked(is_completed);
-  }, [is_completed]);
 
   return (
     <li data-testid="task-list-item">
       <label>
         <input
           type="checkbox"
-          checked={checked}
+          checked={is_completed}
           disabled={disabled}
           onChange={onChange}
         />

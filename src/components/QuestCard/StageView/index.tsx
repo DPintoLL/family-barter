@@ -4,13 +4,26 @@ import { IDifficulty, IStage } from "interfaces";
 
 interface StageViewProps extends IStage {
   difficulty: IDifficulty;
+  completeStage: Function;
   setTaskCompletion: Function;
 }
 
 export default function StageView(props: StageViewProps) {
-  const { title, description, difficulty, tasks, setTaskCompletion } = props;
+  const {
+    id,
+    title,
+    description,
+    difficulty,
+    tasks,
+    completeStage,
+    setTaskCompletion,
+  } = props;
 
   const incompleteTasks = tasks.filter((task) => task.is_completed !== true);
+
+  const onClick = (event: React.MouseEvent) => {
+    completeStage(id);
+  };
 
   return (
     <section
@@ -22,7 +35,9 @@ export default function StageView(props: StageViewProps) {
       {incompleteTasks.length > 0 && (
         <TaskList tasks={tasks} setTaskCompletion={setTaskCompletion} />
       )}
-      {incompleteTasks.length === 0 && <button>Turn In</button>}
+      {incompleteTasks.length === 0 && (
+        <button onClick={onClick}>Turn In</button>
+      )}
     </section>
   );
 }

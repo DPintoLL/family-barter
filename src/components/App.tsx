@@ -4,7 +4,12 @@ import QuestCard from "components/QuestCard";
 import { useApplicationData } from "../hooks/useApplicationData";
 
 export default function App() {
-  const { state, acceptQuest, setTaskCompletion } = useApplicationData();
+  const {
+    state,
+    acceptQuest,
+    completeStage,
+    setTaskCompletion,
+  } = useApplicationData();
 
   return (
     <main className="App">
@@ -18,6 +23,7 @@ export default function App() {
           assigned_to={quest.assigned_to}
           stages={quest.stages}
           acceptQuest={acceptQuest}
+          completeStage={completeStage}
           setTaskCompletion={setTaskCompletion}
         />
       ))}
