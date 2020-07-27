@@ -33,7 +33,7 @@
     "react-test-renderer": "^16.13.1"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"nodemon -L server\"",
+    "start": "concurrently -k \"react-scripts start\" \"nodemon -L server\"",
     "client": "react-scripts start",
     "server": "nodemon -L server",
     "db:reset": "node bin/resetdb.js",

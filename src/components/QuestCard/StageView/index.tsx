@@ -32,7 +32,7 @@ export default function StageView(props: StageViewProps) {
     >
       <h4>{title}</h4>
       <p>{description}</p>
-      {incompleteTasks.length > 0 && (
+      {tasks.length > 0 && (
         <TaskList tasks={tasks} setTaskCompletion={setTaskCompletion} />
       )}
       {incompleteTasks.length === 0 && (
